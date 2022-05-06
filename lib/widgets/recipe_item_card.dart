@@ -1,30 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/models/recipe_model.dart';
 
 class RecipeItemCard extends StatelessWidget {
-  final RecipeModel recipeItem;
+  final String title;
+  final String thumb;
+  final String keys;
+  final String times;
+  final String portion;
+  final String dificulty;
   const RecipeItemCard({
     Key? key,
-    required this.recipeItem,
+    required this.title,
+    required this.thumb,
+    required this.keys,
+    required this.times,
+    required this.portion,
+    required this.dificulty,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        width: 280,
-        padding: const EdgeInsets.all(4.0),
-        child: Column(
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
           children: [
-            Text(recipeItem.title!),
-            Image.network(recipeItem.thumb!),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(recipeItem.times!),
-                Text(recipeItem.portion!),
-                Text(recipeItem.dificulty!),
-              ],
+            ClipRRect(
+              child: Image.network(
+                thumb,
+                height: 150,
+                width: 150,
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(title),
+                    Text(keys),
+                    Text(times),
+                    Text(portion),
+                    Text(dificulty),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

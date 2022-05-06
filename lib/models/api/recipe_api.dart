@@ -1,29 +1,32 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_mini_project/models/recipe_model.dart';
+import 'dart:convert';
+
+import 'package:flutter_mini_project/models/recipe.dart';
 import 'package:flutter_mini_project/utils/api.dart';
 
 class RecipeAPI {
   final API _api = API();
 
-  Future<List<RecipeModel>> getRecipes() async {
+  Future<List<Recipe>> getRecipeByPage(int page) async {
     try {
-      Response response = await _api.dio.get('/recipes');
+      var response = await _api.dio.get(
+        '/recipes/',
+        queryParameters: {
+          'page': page,
+        },
+      );
 
-      List<RecipeModel> recipeList = (response.data as List)
-          .map(
-            (e) => RecipeModel(
-              title: e['title'],
-              thumb: e['thumb'],
-              key: e['key'],
-              times: e['times'],
-              portion: e['portion'],
-              dificulty: e['dificulty'],
-            ),
-          )
-          .toList();
+      print('response: $response');
+
+      ResponseResult responseResult = ResponseResult.fromJson(response.data);
+
+      print('responseResult: ${responseResult.results}');
+
+      List<Recipe> recipeList =
+          responseResult.results!.map((e) => Recipe.fromJson(e)).toList();
 
       return recipeList;
     } catch (e) {
+      print('error1: $e');
       return [];
     }
   }

@@ -4,7 +4,9 @@ class API {
   final Dio dio;
   static final API _api = API._internal(
     Dio(
-      BaseOptions(baseUrl: 'https://masak-apa.tomorisakura.vercel.app/api'),
+      BaseOptions(
+        baseUrl: 'https://masak-apa.tomorisakura.vercel.app/api',
+      ),
     ),
   );
 

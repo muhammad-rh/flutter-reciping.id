@@ -1,31 +1,31 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/models/api/recipe_api.dart';
-import 'package:flutter_mini_project/models/recipe_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_mini_project/models/recipe.dart';
 
 class RecipeViewModel extends ChangeNotifier {
-  List<RecipeModel> recipes = [];
   final RecipeAPI _recipeAPI = RecipeAPI();
 
-  RecipeViewModel() {
-    initialState();
-  }
+  DataState dataState = DataState.loading;
+  List<Recipe> recipeList = [];
 
-  void initialState() async {
-    final r = await _recipeAPI.getRecipes();
-    recipes = r;
-    syncDataWithProvider();
-  }
+  int page = 0;
 
-  Future syncDataWithProvider() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var result = prefs.getStringList('recipes');
-
-    if (result != null) {
-      recipes = result.map((e) => RecipeModel.fromJson(jsonDecode(e))).toList();
-    }
+  void changeState(DataState state) {
+    dataState = state;
     notifyListeners();
+  }
+
+  void getRecipeList() async {
+    changeState(DataState.loading);
+
+    try {
+      recipeList = (await _recipeAPI.getRecipeByPage(page));
+      changeState(DataState.filled);
+      print('recipeList: $recipeList');
+    } catch (e) {
+      print('error2: $e');
+      changeState(DataState.error);
+    }
   }
 }
