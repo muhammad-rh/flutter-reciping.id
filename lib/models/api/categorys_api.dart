@@ -1,17 +1,12 @@
-import 'package:flutter_mini_project/models/categorys.dart';
+import 'package:flutter_mini_project/models/category.dart';
 import 'package:flutter_mini_project/utils/api.dart';
 
 class CategorysAPI {
   final API _api = API();
 
-  Future<List<Categorys>> getCategorysByKey(String key) async {
+  Future<List<Category>> getCategorys() async {
     try {
-      var response = await _api.dio.get(
-        '/recipes/',
-        queryParameters: {
-          'categorys': key,
-        },
-      );
+      var response = await _api.dio.get('/categorys/recipes/');
 
       print('response: $response');
 
@@ -20,8 +15,8 @@ class CategorysAPI {
 
       print('responseResult: ${responseResult.results}');
 
-      List<Categorys> categoryList =
-          responseResult.results!.map((e) => Categorys.fromJson(e)).toList();
+      List<Category> categoryList =
+          responseResult.results!.map((e) => Category.fromJson(e)).toList();
 
       return categoryList;
     } catch (e) {

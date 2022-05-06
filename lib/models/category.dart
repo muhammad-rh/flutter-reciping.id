@@ -10,18 +10,18 @@ class ResponseResultCategorys {
   }
 }
 
-class Categorys {
+class Category {
   String? category;
   String? url;
   String? key;
 
-  Categorys({
+  Category({
     this.category,
     this.url,
     this.key,
   });
 
-  Categorys.fromJson(Map<String, dynamic> json) {
+  Category.fromJson(Map<String, dynamic> json) {
     category = json['category'];
     url = json['url'];
     key = json['key'];

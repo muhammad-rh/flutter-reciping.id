@@ -55,8 +55,8 @@ class NewRecipeCard extends StatelessWidget {
               padding: const EdgeInsets.only(
                 top: 16,
                 bottom: 8,
-                left: 8,
-                right: 8,
+                left: 4,
+                right: 4,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
