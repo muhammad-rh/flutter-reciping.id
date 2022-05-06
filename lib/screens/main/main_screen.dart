@@ -32,14 +32,11 @@ class _MainScreenState extends State<MainScreen> {
       child: Text('Profile'),
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        child: SingleChildScrollView(
-          child: _listPage[_selectedPage],
-        ),
-      ),
+      body: _listPage[_selectedPage],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

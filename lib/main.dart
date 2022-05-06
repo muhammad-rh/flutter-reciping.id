@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/main/main_screen.dart';
-import 'package:flutter_mini_project/screens/recipe/recipe_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -8,7 +8,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => RecipeViewModel(),
+          create: (_) => HomeViewModel(),
         ),
       ],
       child: const MaterialApp(

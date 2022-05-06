@@ -23,7 +23,7 @@ class RecipeItemCard extends StatelessWidget {
       elevation: 5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
+        child: Column(
           children: [
             ClipRRect(
               child: Image.network(
@@ -34,18 +34,17 @@ class RecipeItemCard extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Text(title),
-                    Text(keys),
-                    Text(times),
-                    Text(portion),
-                    Text(dificulty),
-                  ],
-                ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              width: 100,
+              child: Column(
+                children: [
+                  Text(title),
+                  Text(keys),
+                  Text(times),
+                  Text(portion),
+                  Text(dificulty),
+                ],
               ),
             ),
           ],
