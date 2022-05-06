@@ -36,27 +36,29 @@ class NewRecipeCard extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(15.0),
                 ),
+                const Positioned(
+                  right: 10.0,
+                  top: 10.0,
+                  child: SizedBox(
+                    child: Icon(
+                      Icons.bookmark_border_outlined,
+                      size: 36,
+                    ),
+                  ),
+                )
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           const Icon(Icons.timer_sharp),
+                          const SizedBox(width: 2),
                           Text(
                             times,
                             style: const TextStyle(
@@ -67,9 +69,11 @@ class NewRecipeCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(width: 4),
                       Row(
                         children: [
                           const Icon(Icons.palette_rounded),
+                          const SizedBox(width: 2),
                           Text(
                             portion,
                             style: const TextStyle(
@@ -80,9 +84,11 @@ class NewRecipeCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(width: 4),
                       Row(
                         children: [
                           const Icon(Icons.https_sharp),
+                          const SizedBox(width: 2),
                           Text(
                             dificulty,
                             style: const TextStyle(
@@ -94,6 +100,14 @@ class NewRecipeCard extends StatelessWidget {
                         ],
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
