@@ -1,19 +1,12 @@
-class ResponseResult {
+class ResponseResultRecipe {
   String? method;
   bool? status;
   List<dynamic>? results;
 
-  ResponseResult.fromJson(Map<String, dynamic> json)
+  ResponseResultRecipe.fromJson(Map<String, dynamic> json)
       : method = json['method'],
         status = json['status'],
         results = json['results'];
-  // if (json['results'] != null) {
-  //   results = <dynamic>[];
-  //   json['results'].forEach((v) {
-  //     results!.add(Recipe.fromJson(v));
-  //   });
-  // }
-  // }
 }
 
 class Recipe {

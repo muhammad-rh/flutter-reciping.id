@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_mini_project/models/recipe.dart';
 import 'package:flutter_mini_project/utils/api.dart';
 
@@ -17,7 +15,8 @@ class RecipeAPI {
 
       print('response: $response');
 
-      ResponseResult responseResult = ResponseResult.fromJson(response.data);
+      ResponseResultRecipe responseResult =
+          ResponseResultRecipe.fromJson(response.data);
 
       print('responseResult: ${responseResult.results}');
 

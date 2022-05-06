@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
               SizedBox(
-                height: 300,
+                height: 330,
                 child: Consumer<HomeViewModel>(
                   builder: (context, value, child) {
                     if (value.dataState == DataState.loading) {
@@ -137,11 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: 8.0,
-                        );
+                        return const SizedBox(width: 4.0);
                       },
-                      itemCount: 6,
+                      itemCount: value.recipeList.length,
                     );
                   },
                 ),

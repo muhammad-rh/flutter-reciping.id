@@ -19,10 +19,13 @@ class NewRecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: SizedBox(
-        width: 300,
+    return SizedBox(
+      width: 300,
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
         child: Column(
           children: [
             Stack(
@@ -49,67 +52,79 @@ class NewRecipeCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
+              padding: const EdgeInsets.only(
+                top: 16,
+                bottom: 8,
+                left: 8,
+                right: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.timer_sharp),
-                          const SizedBox(width: 2),
-                          Text(
-                            times,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                      const Icon(
+                        Icons.timer_sharp,
+                        size: 20,
                       ),
-                      const SizedBox(width: 4),
-                      Row(
-                        children: [
-                          const Icon(Icons.palette_rounded),
-                          const SizedBox(width: 2),
-                          Text(
-                            portion,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 4),
-                      Row(
-                        children: [
-                          const Icon(Icons.https_sharp),
-                          const SizedBox(width: 2),
-                          Text(
-                            dificulty,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                      const SizedBox(width: 2),
+                      Text(
+                        times,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  const SizedBox(width: 4),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.palette_rounded,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 2),
+                      Text(
+                        portion,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 4),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.https_sharp,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 2),
+                      Text(
+                        dificulty,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],
