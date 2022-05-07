@@ -8,12 +8,12 @@ class CategorysAPI {
     try {
       var response = await _api.dio.get('/categorys/recipes/');
 
-      print('response: $response');
+      // print('response: $response');
 
       ResponseResultCategorys responseResult =
           ResponseResultCategorys.fromJson(response.data);
 
-      print('responseResult: ${responseResult.results}');
+      // print('responseResult: ${responseResult.results}');
 
       List<Category> categoryList =
           responseResult.results!.map((e) => Category.fromJson(e)).toList();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
@@ -154,13 +155,40 @@ class NewRecipesListView extends StatelessWidget {
           return ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return NewRecipeCard(
-                title: value.recipeList[index].title ?? 'Untitle',
-                thumb: value.recipeList[index].thumb ?? '',
-                keys: value.recipeList[index].key ?? '',
-                times: value.recipeList[index].times ?? '',
-                portion: value.recipeList[index].portion ?? '',
-                dificulty: value.recipeList[index].dificulty ?? '',
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(
+                        milliseconds: 500,
+                      ),
+                      reverseTransitionDuration: const Duration(
+                        milliseconds: 500,
+                      ),
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return DetailScreen(
+                          keys: value.recipeList[index].key ?? '',
+                        );
+                      },
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        final tween = Tween(begin: 0.0, end: 1.0);
+                        return FadeTransition(
+                          opacity: animation.drive(tween),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: NewRecipeCard(
+                  title: value.recipeList[index].title ?? 'Untitle',
+                  thumb: value.recipeList[index].thumb ?? '',
+                  keys: value.recipeList[index].key ?? '',
+                  times: value.recipeList[index].times ?? '',
+                  portion: value.recipeList[index].portion ?? '',
+                  dificulty: value.recipeList[index].dificulty ?? '',
+                ),
               );
             },
             separatorBuilder: (context, index) {

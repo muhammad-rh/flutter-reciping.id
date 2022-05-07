@@ -13,12 +13,12 @@ class RecipeAPI {
         },
       );
 
-      print('response: $response');
+      // print('response: $response');
 
       ResponseResultRecipe responseResult =
           ResponseResultRecipe.fromJson(response.data);
 
-      print('responseResult: ${responseResult.results}');
+      // print('responseResult: ${responseResult.results}');
 
       List<Recipe> recipeList =
           responseResult.results!.map((e) => Recipe.fromJson(e)).toList();
