@@ -6,7 +6,7 @@ class ResponseResultDetail {
   ResponseResultDetail.fromJson(Map<String, dynamic> json) {
     method = json['method'];
     status = json['status'];
-    results = json['results'];
+    results = json['results'] != null ? Detail.fromJson(json['results']) : null;
   }
 }
 
@@ -41,9 +41,14 @@ class Detail {
     servings = json['servings'];
     times = json['times'];
     dificulty = json['dificulty'];
-    author = json['author'];
+    author = json['author'] != null ? Author.fromJson(json['author']) : null;
     desc = json['desc'];
-    needItem = json['needItem'];
+    if (json['needItem'] != null) {
+      needItem = <NeedItem>[];
+      json['needItem'].forEach((v) {
+        needItem!.add(NeedItem.fromJson(v));
+      });
+    }
     ingredient = json['ingredient'].cast<String>();
     step = json['step'].cast<String>();
   }
@@ -53,10 +58,7 @@ class Author {
   String? user;
   String? datePublished;
 
-  Author({
-    this.user,
-    this.datePublished,
-  });
+  Author({this.user, this.datePublished});
 
   Author.fromJson(Map<String, dynamic> json) {
     user = json['user'];
@@ -68,10 +70,7 @@ class NeedItem {
   String? itemName;
   String? thumbItem;
 
-  NeedItem({
-    this.itemName,
-    this.thumbItem,
-  });
+  NeedItem({this.itemName, this.thumbItem});
 
   NeedItem.fromJson(Map<String, dynamic> json) {
     itemName = json['item_name'];

@@ -7,7 +7,7 @@ class DetailViewModel extends ChangeNotifier {
   DataState dataState = DataState.loading;
 
   final DetailAPI _detailAPI = DetailAPI();
-  List<Detail> detailList = [];
+  Detail? detailList;
 
   void changeState(DataState state) {
     dataState = state;
@@ -26,17 +26,4 @@ class DetailViewModel extends ChangeNotifier {
       changeState(DataState.error);
     }
   }
-
-  // void getRecipeList() async {
-  //   changeState(DataState.loading);
-
-  //   try {
-  //     recipeList = (await _recipeAPI.getRecipeByPage(page));
-  //     changeState(DataState.filled);
-  //     print('recipeList: $recipeList');
-  //   } catch (e) {
-  //     print('error2: $e');
-  //     changeState(DataState.error);
-  //   }
-  // }
 }
