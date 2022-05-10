@@ -18,11 +18,24 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void searchRecipeList(String key) async {
+    changeState(DataState.loading);
+
+    try {
+      recipeList = await _recipeAPI.searchRecipeByKey(key);
+      changeState(DataState.filled);
+      print('recipeList: $recipeList');
+    } catch (e) {
+      print('error2: $e');
+      changeState(DataState.error);
+    }
+  }
+
   void getRecipeList() async {
     changeState(DataState.loading);
 
     try {
-      recipeList = (await _recipeAPI.getRecipeByPage(page));
+      recipeList = await _recipeAPI.getRecipeByPage(page);
       changeState(DataState.filled);
       // print('recipeList: $recipeList');
     } catch (e) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
+import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
 import 'package:provider/provider.dart';
@@ -28,62 +29,78 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
-      },
-      child: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                title: Text(
-                  'Hello, Your Name',
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                  title: Text(
+                    'Hello, Your Name',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  subtitle: Text(
+                    'What do you want cook today?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  trailing: CircleAvatar(
+                    child: Text('A'),
+                    radius: 24,
+                  ),
+                ),
+                SearchField(),
+                const SizedBox(height: 16),
+                const Text(
+                  'Categories',
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                subtitle: Text(
-                  'What do you want cook today?',
+                const SizedBox(height: 16),
+                const CategoriesListView(),
+                const SizedBox(height: 16),
+                const Text(
+                  'New Recipes',
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                trailing: CircleAvatar(
-                  child: Text('A'),
-                  radius: 24,
-                ),
-              ),
-              SearchField(),
-              SizedBox(height: 16),
-              Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 16),
-              CategoriesListView(),
-              SizedBox(height: 16),
-              Text(
-                'New Recipes',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 16),
-              NewRecipesListView(),
-              SizedBox(height: 16),
-            ],
+                const SizedBox(height: 16),
+                const NewRecipesListView(),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.grey,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: const BottomNavBar(
+        isHome: true,
+        isSearch: false,
+        isBookmark: false,
+        isProfil: false,
       ),
     );
   }
@@ -204,9 +221,11 @@ class NewRecipesListView extends StatelessWidget {
 }
 
 class SearchField extends StatelessWidget {
-  const SearchField({
+  SearchField({
     Key? key,
   }) : super(key: key);
+
+  final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -215,27 +234,34 @@ class SearchField extends StatelessWidget {
         color: const Color.fromARGB(255, 23, 47, 69),
         borderRadius: BorderRadius.circular(15),
       ),
-      child: const TextField(
+      child: TextFormField(
+        controller: _searchController,
+        validator: (value) {
+          if (value!.isNotEmpty) {
+            return null;
+          }
+        },
         decoration: InputDecoration(
           labelText: 'Search any recipes...',
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.grey,
           ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: Color.fromARGB(255, 248, 249, 253),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              print('controller: ${_searchController.text}');
+            },
+            child: const Icon(
+              Icons.search,
+              color: Color.fromARGB(255, 248, 249, 253),
+            ),
           ),
-          suffixIcon: Icon(
-            Icons.display_settings_rounded,
-            color: Color.fromARGB(255, 248, 249, 253),
-          ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               width: 3,
               color: Colors.transparent,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               width: 3,
               color: Colors.transparent,
