@@ -30,59 +30,249 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Recipe Detail',
-        ),
-      ),
       body: RefreshIndicator(
         onRefresh: () async {
           Provider.of<DetailViewModel>(context, listen: false)
               .getDetailList(widget.keys);
         },
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(8.0),
-          child: Consumer<DetailViewModel>(
-            builder: (context, value, child) {
-              if (value.dataState == DataState.loading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+        child: Consumer<DetailViewModel>(
+          builder: (context, value, child) {
+            if (value.dataState == DataState.loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-              if (value.dataState == DataState.error) {
-                return const Center(
-                  child: Text('Something went wrong'),
-                );
-              }
+            if (value.dataState == DataState.error) {
+              return const Center(
+                child: Text('Something went wrong'),
+              );
+            }
 
-              return SizedBox(
+            return SafeArea(
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
                 child: Column(
                   children: [
-                    Text(value.detailList?.title ?? ''),
-                    Text(value.detailList?.servings ?? ''),
-                    SizedBox(
-                      height: 500,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          final String item =
-                              value.detailList?.ingredient![index] ?? '';
-                          return Text(
-                            item,
+                    Stack(
+                      children: [
+                        ClipRRect(
+                          child: Image.network(
+                            value.detailList?.thumb ?? '',
+                            height: 225,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        Positioned(
+                          left: 10.0,
+                          top: 10.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Icon(
+                              Icons.arrow_back_rounded,
+                              size: 36,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            value.detailList?.title ?? '',
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                            ),
                             textAlign: TextAlign.justify,
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: 4);
-                        },
-                        itemCount: value.detailList?.ingredient?.length ?? 0,
+                          ),
+                          const SizedBox(height: 8.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.timer_sharp,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  Text(
+                                    value.detailList?.times! ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 4),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.palette_rounded,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  Text(
+                                    value.detailList?.servings! ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 4),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.https_sharp,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  Text(
+                                    value.detailList?.dificulty! ?? '',
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          DefaultTabController(
+                            length: 3,
+                            initialIndex: 0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(
+                                  child: TabBar(
+                                    labelColor: Colors.black,
+                                    unselectedLabelColor: Colors.grey,
+                                    indicatorColor: Colors.orange,
+                                    labelStyle: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    tabs: [
+                                      Tab(
+                                        text: 'Ingredients',
+                                      ),
+                                      Tab(
+                                        text: 'Step',
+                                      ),
+                                      Tab(
+                                        text: 'Desc',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 330,
+                                  decoration: const BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                          color: Colors.grey, width: 0.5),
+                                    ),
+                                  ),
+                                  child: TabBarView(
+                                    children: [
+                                      SizedBox(
+                                        height: 250,
+                                        child: Scrollbar(
+                                          child: ListView.separated(
+                                            padding: const EdgeInsets.all(4),
+                                            itemBuilder: (context, index) {
+                                              final String item = value
+                                                      .detailList
+                                                      ?.ingredient![index] ??
+                                                  '';
+                                              return Text(
+                                                item,
+                                                style: const TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                                textAlign: TextAlign.justify,
+                                              );
+                                            },
+                                            separatorBuilder: (context, index) {
+                                              return const SizedBox(height: 6);
+                                            },
+                                            itemCount: value.detailList
+                                                    ?.ingredient?.length ??
+                                                0,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 290,
+                                        child: Scrollbar(
+                                          child: ListView.separated(
+                                            padding: const EdgeInsets.all(4),
+                                            itemBuilder: (context, index) {
+                                              final String item = value
+                                                      .detailList
+                                                      ?.step![index] ??
+                                                  '';
+                                              return Text(
+                                                item,
+                                                style: const TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                                textAlign: TextAlign.justify,
+                                              );
+                                            },
+                                            separatorBuilder: (context, index) {
+                                              return const SizedBox(height: 4);
+                                            },
+                                            itemCount: value
+                                                    .detailList?.step?.length ??
+                                                0,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        child: SingleChildScrollView(
+                                          child: Text(
+                                            value.detailList?.desc! ?? '',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
