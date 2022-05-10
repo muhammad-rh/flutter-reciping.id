@@ -32,60 +32,64 @@ class BottomNavBar extends StatelessWidget {
               Icons.home_filled,
               color: isHome ? Colors.white : Colors.grey,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  reverseTransitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return const HomeScreen();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(
-                      opacity: animation.drive(tween),
-                      child: child,
+            onPressed: isHome
+                ? () {}
+                : () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        reverseTransitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const HomeScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          final tween = Tween(begin: 0.0, end: 1.0);
+                          return FadeTransition(
+                            opacity: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   },
-                ),
-              );
-            },
           ),
           IconButton(
             icon: Icon(
               Icons.search,
               color: isSearch ? Colors.white : Colors.grey,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  reverseTransitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return const SearchScreen(search: 'ayam');
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(
-                      opacity: animation.drive(tween),
-                      child: child,
+            onPressed: isSearch
+                ? () {}
+                : () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        reverseTransitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const SearchScreen(search: 'coto');
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          final tween = Tween(begin: 0.0, end: 1.0);
+                          return FadeTransition(
+                            opacity: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   },
-                ),
-              );
-            },
           ),
           const SizedBox(width: 40),
           IconButton(
@@ -93,60 +97,64 @@ class BottomNavBar extends StatelessWidget {
               Icons.bookmark,
               color: isBookmark ? Colors.white : Colors.grey,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  reverseTransitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return const BookmarkScreen();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(
-                      opacity: animation.drive(tween),
-                      child: child,
+            onPressed: isBookmark
+                ? () {}
+                : () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        reverseTransitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const BookmarkScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          final tween = Tween(begin: 0.0, end: 1.0);
+                          return FadeTransition(
+                            opacity: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   },
-                ),
-              );
-            },
           ),
           IconButton(
             icon: Icon(
               Icons.person,
               color: isProfil ? Colors.white : Colors.grey,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  reverseTransitionDuration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return const ProfileScreen();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    final tween = Tween(begin: 0.0, end: 1.0);
-                    return FadeTransition(
-                      opacity: animation.drive(tween),
-                      child: child,
+            onPressed: isProfil
+                ? () {}
+                : () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        reverseTransitionDuration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const ProfileScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          final tween = Tween(begin: 0.0, end: 1.0);
+                          return FadeTransition(
+                            opacity: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   },
-                ),
-              );
-            },
           ),
         ],
       ),

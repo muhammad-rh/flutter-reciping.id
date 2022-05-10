@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
-import 'package:flutter_mini_project/screens/main/main_screen.dart';
+import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -14,6 +14,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => DetailViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SearchViewModel(),
         ),
       ],
       child: MaterialApp(

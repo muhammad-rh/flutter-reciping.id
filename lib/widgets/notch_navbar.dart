@@ -11,30 +11,32 @@ class NotchNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionDuration: const Duration(
-              milliseconds: 500,
-            ),
-            reverseTransitionDuration: const Duration(
-              milliseconds: 500,
-            ),
-            pageBuilder: (context, animation, secondaryAnimation) {
-              return const AddScreen();
-            },
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              final tween = Tween(begin: 0.0, end: 1.0);
-              return FadeTransition(
-                opacity: animation.drive(tween),
-                child: child,
+      onPressed: isAdd
+          ? () {}
+          : () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionDuration: const Duration(
+                    milliseconds: 500,
+                  ),
+                  reverseTransitionDuration: const Duration(
+                    milliseconds: 500,
+                  ),
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return const AddScreen();
+                  },
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    final tween = Tween(begin: 0.0, end: 1.0);
+                    return FadeTransition(
+                      opacity: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
               );
             },
-          ),
-        );
-      },
       child: Icon(
         Icons.add,
         color: isAdd ? Colors.white : Colors.grey,
