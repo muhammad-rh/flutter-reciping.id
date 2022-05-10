@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
 import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
@@ -17,6 +18,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => SearchViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoriesViewModel(),
         ),
       ],
       child: MaterialApp(

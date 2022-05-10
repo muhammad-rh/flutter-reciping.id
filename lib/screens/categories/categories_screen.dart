@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
-import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/notch_navbar.dart';
-import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:flutter_mini_project/widgets/search_recipe_card.dart';
 import 'package:provider/provider.dart';
 
-class SearchScreen extends StatefulWidget {
-  final String search;
-  const SearchScreen({
+class CategoriesScreen extends StatefulWidget {
+  final String keys;
+  const CategoriesScreen({
     Key? key,
-    required this.search,
+    required this.keys,
   }) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
     super.initState();
     if (WidgetsBinding.instance != null) {
       WidgetsBinding.instance!.addPostFrameCallback(
         (timeStamp) {
-          Provider.of<SearchViewModel>(context, listen: false)
-              .searchRecipeList(widget.search);
+          Provider.of<CategoriesViewModel>(context, listen: false)
+              .getCategoryList(widget.keys);
         },
       );
     }
@@ -39,23 +38,16 @@ class _SearchScreenState extends State<SearchScreen> {
       extendBody: true,
       body: RefreshIndicator(
         onRefresh: () async {
-          Provider.of<SearchViewModel>(context, listen: false)
-              .searchRecipeList(widget.search);
+          Provider.of<CategoriesViewModel>(context, listen: false)
+              .getCategoryList(widget.keys);
         },
         child: Column(
           children: [
             Expanded(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SafeArea(
-                      bottom: false,
-                      child: SearchField(),
-                    ),
-                  ),
                   Expanded(
-                    child: SearchRecipeListView(keys: widget.search),
+                    child: CategoryRecipeListView(keys: widget.keys),
                   ),
                 ],
               ),
@@ -66,8 +58,8 @@ class _SearchScreenState extends State<SearchScreen> {
       floatingActionButton: const NotchNavBar(isAdd: false),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
-        isHome: false,
-        isSearch: true,
+        isHome: true,
+        isSearch: false,
         isBookmark: false,
         isProfil: false,
       ),
@@ -75,9 +67,9 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-class SearchRecipeListView extends StatelessWidget {
+class CategoryRecipeListView extends StatelessWidget {
   final String keys;
-  const SearchRecipeListView({
+  const CategoryRecipeListView({
     Key? key,
     required this.keys,
   }) : super(key: key);
@@ -86,7 +78,7 @@ class SearchRecipeListView extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isFound = false;
     return SizedBox(
-      child: Consumer<SearchViewModel>(
+      child: Consumer<CategoriesViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
             return const Center(
@@ -149,8 +141,8 @@ class SearchRecipeListView extends StatelessWidget {
                       thumb: value.recipeList[index].thumb ?? '',
                       keys: value.recipeList[index].key ?? '',
                       times: value.recipeList[index].times ?? '',
-                      portion: value.recipeList[index].serving ?? '',
-                      dificulty: value.recipeList[index].difficulty ?? '',
+                      portion: value.recipeList[index].portion ?? '',
+                      dificulty: value.recipeList[index].dificulty ?? '',
                     ),
                   );
                 }
