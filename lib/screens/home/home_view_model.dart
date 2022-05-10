@@ -24,7 +24,7 @@ class HomeViewModel extends ChangeNotifier {
     try {
       recipeList = (await _recipeAPI.getRecipeByPage(page));
       changeState(DataState.filled);
-      print('recipeList: $recipeList');
+      // print('recipeList: $recipeList');
     } catch (e) {
       print('error2: $e');
       changeState(DataState.error);
@@ -40,7 +40,7 @@ class HomeViewModel extends ChangeNotifier {
     try {
       categoryList = await _categorysAPI.getCategorys();
       changeState(DataState.filled);
-      print('categoryList: $categoryList');
+      // print('categoryList: $categoryList');
     } catch (e) {
       print('error2: $e');
       changeState(DataState.error);

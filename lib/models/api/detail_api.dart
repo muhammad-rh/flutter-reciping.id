@@ -11,12 +11,12 @@ class DetailAPI {
     try {
       var response = await _api.dio.get('/recipe/$key/');
 
-      print('response: ${response.data}');
+      // print('response: ${response.data}');
 
       ResponseResultDetail responseResult =
           ResponseResultDetail.fromJson(response.data);
 
-      print('responseResult: ${responseResult.results}');
+      // print('responseResult: ${responseResult.results}');
 
       return responseResult.results;
     } catch (e) {

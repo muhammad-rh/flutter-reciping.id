@@ -4,9 +4,11 @@ import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
+  final String secondThumb;
   final String keys;
   const DetailScreen({
     Key? key,
+    required this.secondThumb,
     required this.keys,
   }) : super(key: key);
 
@@ -58,7 +60,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         ClipRRect(
                           child: Image.network(
-                            value.detailList?.thumb ?? '',
+                            value.detailList?.thumb ?? widget.secondThumb,
                             height: 225,
                             width: double.infinity,
                             fit: BoxFit.cover,

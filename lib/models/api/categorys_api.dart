@@ -13,7 +13,7 @@ class CategorysAPI {
       ResponseResultCategorys responseResult =
           ResponseResultCategorys.fromJson(response.data);
 
-      print('responseResult: ${responseResult.results}');
+      // print('responseResult: ${responseResult.results}');
 
       List<Category> categoryList =
           responseResult.results!.map((e) => Category.fromJson(e)).toList();

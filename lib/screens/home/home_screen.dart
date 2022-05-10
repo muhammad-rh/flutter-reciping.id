@@ -168,6 +168,7 @@ class NewRecipesListView extends StatelessWidget {
                       pageBuilder: (context, animation, secondaryAnimation) {
                         return DetailScreen(
                           keys: value.recipeList[index].key ?? '',
+                          secondThumb: value.recipeList[index].thumb ?? '',
                         );
                       },
                       transitionsBuilder:
