@@ -9,9 +9,11 @@ import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatefulWidget {
   final String keys;
+  final String category;
   const CategoriesScreen({
     Key? key,
     required this.keys,
+    required this.category,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      appBar: AppBar(
+        title: Text(widget.category),
+        automaticallyImplyLeading: false,
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           Provider.of<CategoriesViewModel>(context, listen: false)
@@ -44,10 +50,26 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         child: Column(
           children: [
             Expanded(
-              child: Column(
+              child: Stack(
                 children: [
                   Expanded(
                     child: CategoryRecipeListView(keys: widget.keys),
+                  ),
+                  const Positioned(
+                    left: 8.0,
+                    bottom: 8.0,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 53),
+                      child: Text('Left'),
+                    ),
+                  ),
+                  const Positioned(
+                    right: 8.0,
+                    bottom: 8.0,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 53),
+                      child: Text('Right'),
+                    ),
                   ),
                 ],
               ),
