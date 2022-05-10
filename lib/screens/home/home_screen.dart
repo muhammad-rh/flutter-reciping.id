@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/add/add_screen.dart';
+import 'package:flutter_mini_project/screens/bookmark/bookmark_screen.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
+import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
+import 'package:flutter_mini_project/screens/search/search_screen.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
+import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -88,12 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.add,
-          color: Colors.grey,
-        ),
+      resizeToAvoidBottomInset: false,
+      floatingActionButton: const NotchNavBar(
+        isAdd: false,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
@@ -236,11 +238,6 @@ class SearchField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: _searchController,
-        validator: (value) {
-          if (value!.isNotEmpty) {
-            return null;
-          }
-        },
         decoration: InputDecoration(
           labelText: 'Search any recipes...',
           labelStyle: const TextStyle(
@@ -248,7 +245,29 @@ class SearchField extends StatelessWidget {
           ),
           suffixIcon: GestureDetector(
             onTap: () {
-              print('controller: ${_searchController.text}');
+              if (_searchController.text.isNotEmpty) {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(
+                      milliseconds: 500,
+                    ),
+                    reverseTransitionDuration: const Duration(
+                      milliseconds: 500,
+                    ),
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return SearchScreen(search: _searchController.text);
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      final tween = Tween(begin: 0.0, end: 1.0);
+                      return FadeTransition(
+                        opacity: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+              }
             },
             child: const Icon(
               Icons.search,

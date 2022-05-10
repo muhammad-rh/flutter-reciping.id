@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 
-class SearchScreen extends StatefulWidget {
-  final String search;
-  const SearchScreen({
-    Key? key,
-    required this.search,
-  }) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Text(
-            widget.search,
+            'Profile',
           ),
         ),
       ),
@@ -28,9 +24,9 @@ class _SearchScreenState extends State<SearchScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
-        isSearch: true,
+        isSearch: false,
         isBookmark: false,
-        isProfil: false,
+        isProfil: true,
       ),
     );
   }
