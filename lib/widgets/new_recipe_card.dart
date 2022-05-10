@@ -40,8 +40,8 @@ class NewRecipeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 const Positioned(
-                  right: 10.0,
-                  top: 10.0,
+                  right: 8.0,
+                  top: 8.0,
                   child: SizedBox(
                     child: Icon(
                       Icons.bookmark_border_outlined,

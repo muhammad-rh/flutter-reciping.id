@@ -15,11 +15,19 @@ void main() {
           create: (_) => DetailViewModel(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData(
+          scrollbarTheme: ScrollbarThemeData(
+            thickness: MaterialStateProperty.all(5),
+            thumbColor: MaterialStateProperty.all(Colors.blue),
+            radius: const Radius.circular(15),
+            minThumbLength: 100,
+          ),
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         title: 'Recipe',
-        home: MainScreen(),
+        home: const MainScreen(),
       ),
     ),
   );

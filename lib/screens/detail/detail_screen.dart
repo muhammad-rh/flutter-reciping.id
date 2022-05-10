@@ -69,16 +69,45 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                         Positioned(
-                          left: 10.0,
-                          top: 10.0,
+                          left: 8.0,
+                          top: 8.0,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: const Icon(
-                              Icons.arrow_back_rounded,
-                              size: 36,
-                              color: Colors.white,
+                            child: const CircleAvatar(
+                              child: Icon(
+                                Icons.arrow_back_rounded,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 8.0,
+                          top: 8.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: const CircleAvatar(
+                              child: Icon(
+                                Icons.bookmark_border_outlined,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 8.0,
+                          bottom: 8.0,
+                          child: Text(
+                            '${value.detailList?.author?.user!} | ${value.detailList?.author?.datePublished!}',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -249,13 +278,15 @@ class _DetailScreenState extends State<DetailScreen> {
                                         ),
                                       ),
                                       SizedBox(
-                                        child: SingleChildScrollView(
-                                          child: Text(
-                                            value.detailList?.desc! ?? '',
-                                            style: const TextStyle(
-                                              fontSize: 16,
+                                        child: Scrollbar(
+                                          child: SingleChildScrollView(
+                                            child: Text(
+                                              '\t\t\t\t\t\t\t${value.detailList?.desc!}',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                              textAlign: TextAlign.justify,
                                             ),
-                                            textAlign: TextAlign.justify,
                                           ),
                                         ),
                                       ),
