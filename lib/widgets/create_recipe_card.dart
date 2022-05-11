@@ -1,29 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/models/create_recipe.dart';
 
 class CreateRecipeCard extends StatelessWidget {
-  final int id;
-  final String title;
-  final String thumb;
-  final String servings;
-  final String times;
-  final String dificulty;
-  final String datePublished;
-  final String desc;
-  final List<String> ingredient;
-  final List<String> step;
+  final CreateRecipe recipe;
   final Function() onPressed;
   const CreateRecipeCard({
     Key? key,
-    required this.id,
-    required this.title,
-    required this.thumb,
-    required this.servings,
-    required this.times,
-    required this.dificulty,
-    required this.datePublished,
-    required this.desc,
-    required this.ingredient,
-    required this.step,
+    required this.recipe,
     required this.onPressed,
   }) : super(key: key);
 
@@ -40,7 +23,7 @@ class CreateRecipeCard extends StatelessWidget {
             children: [
               ClipRRect(
                 child: Image.network(
-                  thumb,
+                  recipe.thumb!,
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -64,7 +47,7 @@ class CreateRecipeCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              times,
+                              recipe.times!,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -82,7 +65,7 @@ class CreateRecipeCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              servings,
+                              recipe.servings!,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -100,7 +83,7 @@ class CreateRecipeCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              dificulty,
+                              recipe.dificulty!,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -119,7 +102,7 @@ class CreateRecipeCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              title,
+              recipe.title!,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,

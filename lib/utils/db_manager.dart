@@ -26,6 +26,7 @@ class DbManager extends ChangeNotifier {
 
     try {
       _recipeList = await _dbHelper.getAllRecipe();
+      print('recipeList: $_recipeList');
     } catch (e) {
       print('error2: $e');
       changeState(DataState.error);

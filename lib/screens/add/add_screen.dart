@@ -45,7 +45,14 @@ class _AddScreenState extends State<AddScreen> {
       appBar: AppBar(
         title: const Text('Create Recipe'),
       ),
-      body: ListView(),
+      body: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: [
+          buildNameField(),
+          const SizedBox(height: 20),
+          buildButton(),
+        ],
+      ),
       floatingActionButton: const NotchNavBar(isAdd: true),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
