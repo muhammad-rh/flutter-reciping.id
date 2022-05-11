@@ -18,15 +18,22 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   final _titleController = TextEditingController();
+  final _servingsController = TextEditingController();
+  final _timesController = TextEditingController();
+  final _dificultyController = TextEditingController();
+  final _descController = TextEditingController();
   bool _isUpdate = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _titleController.addListener(() {
       if (widget.recipe != null) {
         _titleController.text = widget.recipe!.title!;
+        _servingsController.text = widget.recipe!.servings!;
+        _timesController.text = widget.recipe!.times!;
+        _dificultyController.text = widget.recipe!.dificulty!;
+        _descController.text = widget.recipe!.desc!;
         _isUpdate = true;
       }
     });
@@ -34,7 +41,6 @@ class _AddScreenState extends State<AddScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _titleController.dispose();
   }
@@ -69,13 +75,101 @@ class _AddScreenState extends State<AddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Task Title',
+          'Title',
         ),
-        TextField(
+        TextFormField(
           controller: _titleController,
           cursorColor: Colors.black,
           decoration: const InputDecoration(
-            hintText: 'E.g study',
+            hintText: 'Opor Ayam',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const Text(
+          'Desc',
+        ),
+        TextFormField(
+          controller: _descController,
+          cursorColor: Colors.black,
+          decoration: const InputDecoration(
+            hintText: 'Lorem ipsum',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const Text(
+          'Servings',
+        ),
+        TextFormField(
+          controller: _servingsController,
+          cursorColor: Colors.black,
+          decoration: const InputDecoration(
+            hintText: '3 Portion',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const Text(
+          'Times',
+        ),
+        TextFormField(
+          controller: _timesController,
+          cursorColor: Colors.black,
+          decoration: const InputDecoration(
+            hintText: '1 jam',
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const Text(
+          'Difficulty',
+        ),
+        TextFormField(
+          controller: _dificultyController,
+          cursorColor: Colors.black,
+          decoration: const InputDecoration(
+            hintText: 'Pemula',
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black),
               borderRadius: BorderRadius.all(
@@ -100,19 +194,37 @@ class _AddScreenState extends State<AddScreen> {
         if (!_isUpdate) {
           final recipe = CreateRecipe(
             title: _titleController.text,
+            haveThumb: false,
+            thumb: null,
+            servings: _servingsController.text,
+            times: _timesController.text,
+            dificulty: _dificultyController.text,
+            desc: _dificultyController.text,
+            datePublished: null,
+            ingredient: null,
+            step: null,
           );
           Provider.of<DbManager>(context, listen: false).addRecipe(recipe);
         } else {
           final recipe = CreateRecipe(
             id: widget.recipe!.id,
             title: _titleController.text,
+            haveThumb: false,
+            thumb: null,
+            servings: _servingsController.text,
+            times: _timesController.text,
+            dificulty: _dificultyController.text,
+            desc: _dificultyController.text,
+            datePublished: null,
+            ingredient: null,
+            step: null,
           );
           Provider.of<DbManager>(context, listen: false).updateRecipe(recipe);
         }
         Navigator.pop(context);
       },
       child: const Text(
-        'Create Task',
+        'Post Recipe',
       ),
     );
   }

@@ -1,6 +1,7 @@
 class CreateRecipe {
   int? id;
   String? title;
+  bool? haveThumb;
   String? thumb;
   String? servings;
   String? times;
@@ -13,6 +14,7 @@ class CreateRecipe {
   CreateRecipe({
     this.id,
     this.title,
+    this.haveThumb,
     this.thumb,
     this.servings,
     this.times,
@@ -26,6 +28,7 @@ class CreateRecipe {
   CreateRecipe.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     title = map['title'];
+    haveThumb = map['haveThumb'];
     thumb = map['thumb'];
     servings = map['servings'];
     times = map['times'];
@@ -40,6 +43,7 @@ class CreateRecipe {
     var map = <String, dynamic>{};
     map['id'] = id;
     map['title'] = title;
+    map['haveThumb'] = haveThumb;
     map['thumb'] = thumb;
     map['servings'] = servings;
     map['times'] = times;
