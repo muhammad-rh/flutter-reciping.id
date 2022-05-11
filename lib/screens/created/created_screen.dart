@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 
-class BookmarkScreen extends StatefulWidget {
-  const BookmarkScreen({Key? key}) : super(key: key);
+class CreatedScreen extends StatefulWidget {
+  const CreatedScreen({Key? key}) : super(key: key);
 
   @override
-  State<BookmarkScreen> createState() => _BookmarkScreenState();
+  State<CreatedScreen> createState() => _CreatedScreenState();
 }
 
-class _BookmarkScreenState extends State<BookmarkScreen> {
+class _CreatedScreenState extends State<CreatedScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

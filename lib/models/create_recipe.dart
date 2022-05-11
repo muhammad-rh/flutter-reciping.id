@@ -1,4 +1,5 @@
 class CreateRecipe {
+  int? id;
   String? title;
   String? thumb;
   String? servings;
@@ -10,6 +11,7 @@ class CreateRecipe {
   List<String>? step;
 
   CreateRecipe({
+    this.id,
     this.title,
     this.thumb,
     this.servings,
@@ -22,6 +24,7 @@ class CreateRecipe {
   });
 
   CreateRecipe.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
     title = map['title'];
     thumb = map['thumb'];
     servings = map['servings'];
@@ -35,6 +38,7 @@ class CreateRecipe {
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
+    map['id'] = id;
     map['title'] = title;
     map['thumb'] = thumb;
     map['servings'] = servings;

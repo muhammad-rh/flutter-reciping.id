@@ -42,6 +42,7 @@ dependencies:
   json_annotation: ^4.5.0
   http: ^0.13.4
   sqflite: ^2.0.2+1
+  path: ^1.8.0
 
 dev_dependencies:
   flutter_test:
