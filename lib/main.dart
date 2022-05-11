@@ -4,6 +4,7 @@ import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
+import 'package:flutter_mini_project/utils/db_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,6 +22,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => CategoriesViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DbManager(),
         ),
       ],
       child: MaterialApp(
