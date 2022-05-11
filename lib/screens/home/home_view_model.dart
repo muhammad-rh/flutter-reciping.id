@@ -31,6 +31,11 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
+  // void updateIsSavedRecipe(int index, bool newValue) async {
+  //   recipeList[index].isSaved = newValue;
+  //   notifyListeners();
+  // }
+
   final CategorysAPI _categorysAPI = CategorysAPI();
   List<Category> categoryList = [];
 

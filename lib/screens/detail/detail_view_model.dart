@@ -26,4 +26,15 @@ class DetailViewModel extends ChangeNotifier {
       changeState(DataState.error);
     }
   }
+
+  bool _isSaved = false;
+
+  bool get isSaved => _isSaved;
+
+  set isSaved(bool newValue) {
+    _isSaved = newValue;
+    notifyListeners();
+  }
+
+  get bookmark => _isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
 }

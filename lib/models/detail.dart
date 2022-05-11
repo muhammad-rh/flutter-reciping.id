@@ -21,7 +21,6 @@ class Detail {
   List<NeedItem>? needItem;
   List<String>? ingredient;
   List<String>? step;
-  bool? saved;
 
   Detail({
     this.title,
@@ -34,7 +33,6 @@ class Detail {
     this.needItem,
     this.ingredient,
     this.step,
-    this.saved,
   });
 
   Detail.fromJson(Map<String, dynamic> json) {

@@ -41,6 +41,7 @@ dependencies:
   build_runner: ^2.1.10
   json_annotation: ^4.5.0
   http: ^0.13.4
+  sqflite: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

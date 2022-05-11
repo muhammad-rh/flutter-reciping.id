@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/screens/categories/categories_screen.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
@@ -36,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
+          Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
         },
         child: SafeArea(
           child: SingleChildScrollView(

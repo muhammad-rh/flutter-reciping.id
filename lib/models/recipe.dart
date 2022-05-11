@@ -16,7 +16,6 @@ class Recipe {
   String? times;
   String? portion;
   String? dificulty;
-  bool? saved;
 
   Recipe({
     this.title,
@@ -25,7 +24,6 @@ class Recipe {
     this.times,
     this.portion,
     this.dificulty,
-    this.saved,
   });
 
   Recipe.fromJson(Map<String, dynamic> json) {

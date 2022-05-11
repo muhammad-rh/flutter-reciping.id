@@ -88,22 +88,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         Positioned(
                           right: 8.0,
-                          top: 8.0,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const CircleAvatar(
-                              child: Icon(
-                                Icons.bookmark_border_outlined,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 8.0,
                           bottom: 8.0,
                           child: Text(
                             '${value.detailList?.author?.user!} | ${value.detailList?.author?.datePublished!}',

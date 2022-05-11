@@ -38,21 +38,6 @@ class SearchRecipeCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               Positioned(
-                right: 8.0,
-                top: 8.0,
-                child: SizedBox(
-                  child: GestureDetector(
-                    onTap: () {
-                      print('portion: $portion | dificulty: $dificulty');
-                    },
-                    child: const Icon(
-                      Icons.bookmark_border_outlined,
-                      size: 36,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
                 left: 8.0,
                 bottom: 8.0,
                 child: Column(

@@ -28,28 +28,14 @@ class NewRecipeCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  child: Image.network(
-                    thumb,
-                    height: 200,
-                    width: 300,
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                const Positioned(
-                  right: 8.0,
-                  top: 8.0,
-                  child: SizedBox(
-                    child: Icon(
-                      Icons.bookmark_border_outlined,
-                      size: 36,
-                    ),
-                  ),
-                )
-              ],
+            ClipRRect(
+              child: Image.network(
+                thumb,
+                height: 200,
+                width: 300,
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(15.0),
             ),
             Padding(
               padding: const EdgeInsets.only(
