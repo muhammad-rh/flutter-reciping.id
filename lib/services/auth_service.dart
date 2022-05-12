@@ -11,18 +11,20 @@ class AuthServices extends ChangeNotifier {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
-  void userFromFirebase() async {
+  void retrieveUser() async {
     try {
       await FirebaseFirestore.instance
           .collection("users")
           .doc(user!.uid)
           .get()
-          .then((value) => loggedInUser = UserModel.fromMap(value.data));
+          .then((value) {
+        loggedInUser = UserModel.fromMap(value.data());
+      });
     } catch (e) {
       print('Error retrieved user: $e');
     }
 
-    print('loggedInUser: $loggedInUser');
+    print('Users: ${loggedInUser.uid}');
   }
 
   void signInWithEmailAndPassword(
@@ -38,6 +40,7 @@ class AuthServices extends ChangeNotifier {
           )
           .then(
             (value) => {
+              retrieveUser(),
               Fluttertoast.showToast(msg: "Login Successful"),
               Navigator.pushReplacementNamed(context, '/home'),
             },
@@ -74,8 +77,6 @@ class AuthServices extends ChangeNotifier {
       Fluttertoast.showToast(msg: errorMessage!);
       print(e.code);
     }
-
-    userFromFirebase();
   }
 
   void createUserWithEmailAndPassword(
