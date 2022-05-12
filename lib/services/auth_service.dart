@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -11,7 +12,23 @@ class AuthServices extends ChangeNotifier {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
+  DataState dataState = DataState.loading;
+
+  UserModel? _userFromFirebase(User? users) {
+    return users != null ? UserModel(uid: users.uid) : null;
+  }
+
+  Stream<UserModel?> get userNow {
+    return _auth.authStateChanges().map(_userFromFirebase);
+  }
+
+  void changeState(DataState state) {
+    dataState = state;
+    notifyListeners();
+  }
+
   void retrieveUser() async {
+    changeState(DataState.loading);
     try {
       await FirebaseFirestore.instance
           .collection("users")
@@ -19,12 +36,12 @@ class AuthServices extends ChangeNotifier {
           .get()
           .then((value) {
         loggedInUser = UserModel.fromMap(value.data());
+        changeState(DataState.filled);
       });
     } catch (e) {
       print('Error retrieved user: $e');
+      changeState(DataState.error);
     }
-
-    print('Users: ${loggedInUser.uid}');
   }
 
   void signInWithEmailAndPassword(
@@ -40,7 +57,6 @@ class AuthServices extends ChangeNotifier {
           )
           .then(
             (value) => {
-              retrieveUser(),
               Fluttertoast.showToast(msg: "Login Successful"),
               Navigator.pushReplacementNamed(context, '/home'),
             },

@@ -9,6 +9,7 @@ import 'package:flutter_mini_project/screens/register/register_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/utils/db_manager.dart';
+import 'package:flutter_mini_project/widgets/wrapper.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -34,8 +35,9 @@ void main() async {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
+        initialRoute: '/',
         routes: {
+          '/': (context) => const Wrapper(),
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegisterScreen(),
           '/home': (context) => const HomeScreen()
