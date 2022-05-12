@@ -45,6 +45,8 @@ dependencies:
   path: ^1.8.0
   firebase_core: ^1.16.0
   firebase_auth: ^3.3.17
+  cloud_firestore: ^3.1.14
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:

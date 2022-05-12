@@ -14,14 +14,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
-
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: ElevatedButton(
             onPressed: () async {
-              await authService.signOut();
               Navigator.pushReplacementNamed(context, '/login');
             },
             child: const Text('Logout'),
