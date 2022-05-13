@@ -1,18 +1,26 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path/path.dart' as Path;
 
 class AuthServices extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
+
+  final _collections = FirebaseFirestore.instance.collection('users');
+
+  final _storageReference = FirebaseStorage.instance;
+
   String? errorMessage;
 
-  User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
-  DataState dataState = DataState.loading;
+  UserModel userModel = UserModel();
 
   UserModel? _userFromFirebase(User? users) {
     return users != null ? UserModel(uid: users.uid) : null;
@@ -22,25 +30,14 @@ class AuthServices extends ChangeNotifier {
     return _auth.authStateChanges().map(_userFromFirebase);
   }
 
-  void changeState(DataState state) {
-    dataState = state;
-    notifyListeners();
-  }
-
-  void retrieveUser() async {
-    changeState(DataState.loading);
+  retrieveUser() async {
+    User? user = _auth.currentUser;
     try {
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(user!.uid)
-          .get()
-          .then((value) {
+      return await _collections.doc(user!.uid).get().then((value) {
         loggedInUser = UserModel.fromMap(value.data());
-        changeState(DataState.filled);
       });
     } catch (e) {
       print('Error retrieved user: $e');
-      changeState(DataState.error);
     }
   }
 
@@ -108,8 +105,14 @@ class AuthServices extends ChangeNotifier {
             email: email,
             password: password,
           )
-          .then(
-              (value) => {postDetailsToFirestore(firstName, lastName, context)})
+          .then((value) => {
+                postDetailsToFirestore(
+                  firstName,
+                  lastName,
+                  context,
+                  false,
+                )
+              })
           .catchError(
         (e) {
           Fluttertoast.showToast(msg: e!.message);
@@ -149,11 +152,8 @@ class AuthServices extends ChangeNotifier {
   }
 
   postDetailsToFirestore(String firstNameController, String lastNameController,
-      BuildContext context) async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+      BuildContext context, bool isUpdate) async {
     User? user = _auth.currentUser;
-
-    UserModel userModel = UserModel();
 
     // writing all the values
     userModel.email = user!.email;
@@ -161,12 +161,28 @@ class AuthServices extends ChangeNotifier {
     userModel.firstName = firstNameController;
     userModel.lastName = lastNameController;
 
-    await firebaseFirestore
-        .collection("users")
-        .doc(user.uid)
-        .set(userModel.toMap());
+    if (isUpdate) {
+      await _collections
+          .doc(user.uid)
+          .set(userModel.toMap(), SetOptions(merge: true));
 
-    Fluttertoast.showToast(msg: "Account created succesfully :)");
-    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      Fluttertoast.showToast(msg: "Account updated succesfully :)");
+      Navigator.pushNamedAndRemoveUntil(context, '/profile', (route) => false);
+    } else {
+      await _collections.doc(user.uid).set(userModel.toMap());
+
+      Fluttertoast.showToast(msg: "Account created succesfully :)");
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+    }
+  }
+
+  Future uploadFile(File _image, String _uploadedFileURL) async {
+    final storage = _storageReference
+        .ref()
+        .child('userImages/${Path.basename(_image.path)}');
+    final uploadTask = storage.putFile(_image);
+
+    await uploadTask;
+    return storage.getDownloadURL().then((value) => _uploadedFileURL = value);
   }
 }

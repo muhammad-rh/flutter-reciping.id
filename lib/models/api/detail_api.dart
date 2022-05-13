@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_mini_project/models/detail.dart';
 import 'package:flutter_mini_project/utils/api.dart';
 

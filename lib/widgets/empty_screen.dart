@@ -16,9 +16,8 @@ class EmptyScreen extends StatelessWidget {
           // ),
           // SizedBox(height: 20),
           Text(
-            'Task masih kosong,,,',
+            'Empty',
             style: TextStyle(
-              fontSize: 30,
               fontWeight: FontWeight.w500,
             ),
           ),

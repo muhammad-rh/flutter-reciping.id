@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/models/user.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -139,6 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (!regex.hasMatch(value)) {
                         return ("Enter Valid Password(Min. 6 Character)");
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       passwordController.text = value!;

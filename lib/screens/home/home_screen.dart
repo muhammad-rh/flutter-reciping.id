@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/models/category.dart';
+import 'package:flutter_mini_project/models/user.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
+import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
@@ -22,9 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+        await Provider.of<AuthServices>(context, listen: false).retrieveUser();
         Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
         Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
+        setState(() {});
       });
     }
   }
@@ -33,36 +38,45 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: () async {
-          Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
-          Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
-        },
+        onRefresh: () async {},
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                  title: Text(
-                    'Hello, Your Name',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  subtitle: Text(
-                    'What do you want cook today?',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  trailing: CircleAvatar(
-                    child: Text('A'),
-                    radius: 24,
-                  ),
+                Consumer<AuthServices>(
+                  builder: (context, value, child) {
+                    if (value.loggedInUser.uid == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    return ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                      title: Text(
+                        'Hello, ${value.loggedInUser.firstName}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      subtitle: const Text(
+                        'What do you want cook today?',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      trailing: CircleAvatar(
+                        child: Text(
+                          '${value.loggedInUser.firstName?[0].toUpperCase()}${value.loggedInUser.lastName?[0].toUpperCase()}',
+                        ),
+                        radius: 24,
+                      ),
+                    );
+                  },
                 ),
                 SearchField(),
                 const SizedBox(height: 16),

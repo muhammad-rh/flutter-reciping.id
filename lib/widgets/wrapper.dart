@@ -14,6 +14,7 @@ class Wrapper extends StatelessWidget {
     return StreamBuilder<UserModel?>(
       stream: authService.userNow,
       builder: (_, AsyncSnapshot<UserModel?> snapshot) {
+        Provider.of<AuthServices>(context, listen: false).retrieveUser();
         if (snapshot.connectionState == ConnectionState.active) {
           final UserModel? user = snapshot.data;
           return user == null ? const LoginScreen() : const HomeScreen();

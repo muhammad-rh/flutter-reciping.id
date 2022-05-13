@@ -1,16 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 class UserModel {
   String? uid;
   String? email;
   String? firstName;
   String? lastName;
+  String? imgUrl;
 
   UserModel({
     this.uid,
     this.email,
     this.firstName,
     this.lastName,
+    this.imgUrl,
   });
 
   // receiving data from server
@@ -20,6 +20,7 @@ class UserModel {
       email: map['email'],
       firstName: map['firstName'],
       lastName: map['lastName'],
+      imgUrl: map['imgUrl'],
     );
   }
 
@@ -30,8 +31,7 @@ class UserModel {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
+      'imgUrl': imgUrl,
     };
   }
-
-  UserModel.fromUser(User user);
 }
