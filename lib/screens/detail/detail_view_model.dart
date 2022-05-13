@@ -20,9 +20,7 @@ class DetailViewModel extends ChangeNotifier {
     try {
       detailList = await _detailAPI.getDetailByKey(keyTerm);
       changeState(DataState.filled);
-      // print('detail: $detailList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }

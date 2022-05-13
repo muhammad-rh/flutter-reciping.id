@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,14 +6,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path/path.dart' as Path;
 
 class AuthServices extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
 
   final _collections = FirebaseFirestore.instance.collection('users');
-
-  final _storageReference = FirebaseStorage.instance;
 
   String? errorMessage;
 
@@ -37,7 +33,7 @@ class AuthServices extends ChangeNotifier {
         loggedInUser = UserModel.fromMap(value.data());
       });
     } catch (e) {
-      print('Error retrieved user: $e');
+      return null;
     }
   }
 
@@ -88,7 +84,6 @@ class AuthServices extends ChangeNotifier {
           errorMessage = "An undefined Error happened.";
       }
       Fluttertoast.showToast(msg: errorMessage!);
-      print(e.code);
     }
   }
 
@@ -109,6 +104,7 @@ class AuthServices extends ChangeNotifier {
                 postDetailsToFirestore(
                   firstName,
                   lastName,
+                  null,
                   context,
                   false,
                 )
@@ -142,7 +138,6 @@ class AuthServices extends ChangeNotifier {
           errorMessage = "An undefined Error happened.";
       }
       Fluttertoast.showToast(msg: errorMessage!);
-      print(error.code);
     }
   }
 
@@ -152,14 +147,17 @@ class AuthServices extends ChangeNotifier {
   }
 
   postDetailsToFirestore(String firstNameController, String lastNameController,
-      BuildContext context, bool isUpdate) async {
+      File? _image, BuildContext context, bool isUpdate) async {
     User? user = _auth.currentUser;
+
+    final imgUrl = await uploadImage(_image);
 
     // writing all the values
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.firstName = firstNameController;
     userModel.lastName = lastNameController;
+    userModel.imgUrl = imgUrl;
 
     if (isUpdate) {
       await _collections
@@ -176,27 +174,14 @@ class AuthServices extends ChangeNotifier {
     }
   }
 
-  Future uploadImageToFirebase(BuildContext context, File? _imageFile) async {
-    String fileName = Path.basename(_imageFile!.path);
+  Future<String> uploadImage(File? _image) async {
+    final ref =
+        FirebaseStorage.instance.ref().child('userImages/${_image!.path}');
+    final uploadTask = ref.putFile(_image);
 
-    // Uint8List? fileBytes = _imageFile!.
+    var downUrl = await (await uploadTask).ref.getDownloadURL();
+    var url = downUrl.toString();
 
-    final storage = _storageReference.ref().child('userImages/$fileName');
-    final uploadTask = storage.putFile(_imageFile);
-    final taskSnapshot = await uploadTask;
-
-    return taskSnapshot.ref
-        .getDownloadURL()
-        .then((value) => print('donwloadUrl: $value'));
+    return url;
   }
-
-  // Future uploadFile(File _image, String _uploadedFileURL) async {
-  //   final storage = _storageReference
-  //       .ref()
-  //       .child('userImages/${Path.basename(_image.path)}');
-  //   final uploadTask = storage.putFile(_image);
-
-  //   await uploadTask;
-  //   return storage.getDownloadURL().then((value) => _uploadedFileURL = value);
-  // }
 }

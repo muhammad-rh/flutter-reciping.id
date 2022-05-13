@@ -13,19 +13,14 @@ class RecipeAPI {
         },
       );
 
-      // print('response: $response');
-
       ResponseResultRecipe responseResult =
           ResponseResultRecipe.fromJson(response.data);
-
-      // print('responseResult: ${responseResult.results}');
 
       List<Recipe> recipeList =
           responseResult.results!.map((e) => Recipe.fromJson(e)).toList();
 
       return recipeList;
     } catch (e) {
-      print('error1: $e');
       return [];
     }
   }

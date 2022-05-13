@@ -67,11 +67,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      trailing: CircleAvatar(
-                        child: Text(
-                          '${value.loggedInUser.firstName?[0].toUpperCase()}${value.loggedInUser.lastName?[0].toUpperCase()}',
-                        ),
-                        radius: 24,
+                      trailing: SizedBox(
+                        height: 48,
+                        child: value.loggedInUser.imgUrl != null
+                            ? ClipOval(
+                                child: Image.network(
+                                  value.loggedInUser.imgUrl!,
+                                  fit: BoxFit.cover,
+                                  width: 48,
+                                  height: 48,
+                                ),
+                              )
+                            : CircleAvatar(
+                                child: Text(
+                                  '${value.loggedInUser.firstName?[0].toUpperCase()}${value.loggedInUser.lastName?[0].toUpperCase()}',
+                                ),
+                                radius: 24,
+                              ),
                       ),
                     );
                   },

@@ -26,9 +26,7 @@ class DbManager extends ChangeNotifier {
 
     try {
       _recipeList = await _dbHelper.getAllRecipe();
-      print('recipeList: $_recipeList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }
@@ -40,7 +38,6 @@ class DbManager extends ChangeNotifier {
       await _dbHelper.addRecipe(recipe);
       _getAllRecipes();
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }
@@ -56,7 +53,6 @@ class DbManager extends ChangeNotifier {
       await _dbHelper.updateRecipe(recipe);
       _getAllRecipes();
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }
@@ -68,7 +64,6 @@ class DbManager extends ChangeNotifier {
       await _dbHelper.deleteRecipe(id);
       _getAllRecipes();
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }

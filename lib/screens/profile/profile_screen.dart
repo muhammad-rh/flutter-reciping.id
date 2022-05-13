@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/notch_navbar.dart';
@@ -17,8 +16,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        Provider.of<AuthServices>(context, listen: false).retrieveUser();
+      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+        await Provider.of<AuthServices>(context, listen: false).retrieveUser();
+        setState(() {});
       });
     }
   }
@@ -34,31 +34,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Center(
             child: Consumer<AuthServices>(
               builder: (context, value, child) {
-                // if (value.dataState == DataState.loading) {
-                //   return const Center(
-                //     child: CircularProgressIndicator(),
-                //   );
-                // }
-
-                // if (value.dataState == DataState.error) {
-                //   return const Center(
-                //     child: Text('Something went wrong'),
-                //   );
-                // }
-
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 120,
-                      child: CircleAvatar(
-                        child: Icon(
-                          Icons.person,
-                          size: 60,
-                        ),
-                        radius: 45,
-                      ),
+                    SizedBox(
+                      height: 90,
+                      child: value.loggedInUser.imgUrl != null
+                          ? ClipOval(
+                              child: Image.network(
+                                value.loggedInUser.imgUrl!,
+                                fit: BoxFit.cover,
+                                width: 90,
+                                height: 90,
+                              ),
+                            )
+                          : CircleAvatar(
+                              child: Text(
+                                '${value.loggedInUser.firstName?[0].toUpperCase()}${value.loggedInUser.lastName?[0].toUpperCase()}',
+                              ),
+                              radius: 45,
+                            ),
                     ),
                     Text(
                       '${value.loggedInUser.firstName} ${value.loggedInUser.lastName}',

@@ -22,9 +22,7 @@ class SearchViewModel extends ChangeNotifier {
     try {
       recipeList = await _recipeAPI.searchRecipeByKey(key);
       changeState(DataState.filled);
-      // print('recipeList: $recipeList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }

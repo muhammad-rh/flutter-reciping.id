@@ -22,9 +22,7 @@ class RecipeViewModel extends ChangeNotifier {
     try {
       recipeList = (await _recipeAPI.getRecipeByPage(page));
       changeState(DataState.filled);
-      print('recipeList: $recipeList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }

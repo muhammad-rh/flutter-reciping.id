@@ -53,7 +53,6 @@ class _RecipeScreenState extends State<RecipeScreen> {
 
                     return ListView.separated(
                       itemBuilder: (context, index) {
-                        print('value.recipeList: $value.recipeList');
                         return RecipeItemCard(
                           title: value.recipeList[index].title ?? 'Untitle',
                           thumb: value.recipeList[index].thumb ?? '',

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class ProfileEditScreen extends StatefulWidget {
@@ -21,13 +22,14 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   File? _image;
   final _picker = ImagePicker();
+  String? fileName;
 
   Future<void> chooseImage() async {
-    final XFile? pickedImage =
-        await _picker.pickImage(source: ImageSource.gallery);
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        fileName = basename(_image!.path);
       });
     }
   }
@@ -71,12 +73,13 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                     height: 90,
                                   ),
                                 )
-                              : CircleAvatar(
-                                  child: Text(
-                                    firstNameController.text[0] +
-                                        lastNameController.text[0],
+                              : ClipOval(
+                                  child: Image.network(
+                                    manager.loggedInUser.imgUrl!,
+                                    fit: BoxFit.cover,
+                                    width: 90,
+                                    height: 90,
                                   ),
-                                  radius: 45,
                                 ),
                         ),
                         Align(
@@ -227,6 +230,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         manager.postDetailsToFirestore(
                           firstNameController.text,
                           lastNameController.text,
+                          _image,
                           context,
                           true,
                         );

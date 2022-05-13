@@ -22,9 +22,7 @@ class CategoriesViewModel extends ChangeNotifier {
     try {
       recipeList = await _recipeAPI.getCategoryList(key, page);
       changeState(DataState.filled);
-      // print('recipeList: $recipeList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }

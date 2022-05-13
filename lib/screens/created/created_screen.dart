@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/screens/add/add_screen.dart';
 import 'package:flutter_mini_project/screens/created/created_list_screen.dart';
 import 'package:flutter_mini_project/utils/db_manager.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
-import 'package:flutter_mini_project/widgets/create_recipe_card.dart';
 import 'package:flutter_mini_project/widgets/empty_screen.dart';
 import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 import 'package:provider/provider.dart';

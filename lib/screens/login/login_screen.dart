@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -18,12 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
-
-  // firebase
-  final _auth = FirebaseAuth.instance;
-
-  // string for displaying the error Message
-  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (!regex.hasMatch(value)) {
                         return ("Enter Valid Password(Min. 6 Character)");
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       passwordController.text = value!;
@@ -134,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have and account? "),
+                      const Text("Don't have an account? "),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/register');

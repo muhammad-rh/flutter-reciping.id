@@ -24,17 +24,10 @@ class HomeViewModel extends ChangeNotifier {
     try {
       recipeList = await _recipeAPI.getRecipeByPage(page);
       changeState(DataState.filled);
-      // print('recipeList: $recipeList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }
-
-  // void updateIsSavedRecipe(int index, bool newValue) async {
-  //   recipeList[index].isSaved = newValue;
-  //   notifyListeners();
-  // }
 
   final CategorysAPI _categorysAPI = CategorysAPI();
   List<Category> categoryList = [];
@@ -45,9 +38,7 @@ class HomeViewModel extends ChangeNotifier {
     try {
       categoryList = await _categorysAPI.getCategorys();
       changeState(DataState.filled);
-      // print('categoryList: $categoryList');
     } catch (e) {
-      print('error2: $e');
       changeState(DataState.error);
     }
   }
