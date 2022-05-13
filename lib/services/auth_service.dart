@@ -150,7 +150,13 @@ class AuthServices extends ChangeNotifier {
       File? _image, BuildContext context, bool isUpdate) async {
     User? user = _auth.currentUser;
 
-    final imgUrl = await uploadImage(_image);
+    final String? imgUrl;
+
+    if (_image == null) {
+      imgUrl = null;
+    } else {
+      imgUrl = await uploadImage(_image);
+    }
 
     // writing all the values
     userModel.email = user!.email;

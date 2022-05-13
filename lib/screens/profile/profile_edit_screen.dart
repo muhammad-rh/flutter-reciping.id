@@ -74,12 +74,21 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   ),
                                 )
                               : ClipOval(
-                                  child: Image.network(
-                                    manager.loggedInUser.imgUrl!,
-                                    fit: BoxFit.cover,
-                                    width: 90,
-                                    height: 90,
-                                  ),
+                                  child: manager.loggedInUser.imgUrl != null
+                                      ? ClipOval(
+                                          child: Image.network(
+                                            manager.loggedInUser.imgUrl!,
+                                            fit: BoxFit.cover,
+                                            width: 90,
+                                            height: 90,
+                                          ),
+                                        )
+                                      : CircleAvatar(
+                                          child: Text(
+                                            '${manager.loggedInUser.firstName?[0].toUpperCase()}${manager.loggedInUser.lastName?[0].toUpperCase()}',
+                                          ),
+                                          radius: 45,
+                                        ),
                                 ),
                         ),
                         Align(
