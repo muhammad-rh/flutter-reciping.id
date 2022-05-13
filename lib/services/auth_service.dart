@@ -1,10 +1,10 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart' as Path;
@@ -176,13 +176,27 @@ class AuthServices extends ChangeNotifier {
     }
   }
 
-  Future uploadFile(File _image, String _uploadedFileURL) async {
-    final storage = _storageReference
-        .ref()
-        .child('userImages/${Path.basename(_image.path)}');
-    final uploadTask = storage.putFile(_image);
+  Future uploadImageToFirebase(BuildContext context, File? _imageFile) async {
+    String fileName = Path.basename(_imageFile!.path);
 
-    await uploadTask;
-    return storage.getDownloadURL().then((value) => _uploadedFileURL = value);
+    // Uint8List? fileBytes = _imageFile!.
+
+    final storage = _storageReference.ref().child('userImages/$fileName');
+    final uploadTask = storage.putFile(_imageFile);
+    final taskSnapshot = await uploadTask;
+
+    return taskSnapshot.ref
+        .getDownloadURL()
+        .then((value) => print('donwloadUrl: $value'));
   }
+
+  // Future uploadFile(File _image, String _uploadedFileURL) async {
+  //   final storage = _storageReference
+  //       .ref()
+  //       .child('userImages/${Path.basename(_image.path)}');
+  //   final uploadTask = storage.putFile(_image);
+
+  //   await uploadTask;
+  //   return storage.getDownloadURL().then((value) => _uploadedFileURL = value);
+  // }
 }

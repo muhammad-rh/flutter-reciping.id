@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/models/category.dart';
-import 'package:flutter_mini_project/models/user.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
@@ -91,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const CategoriesListView(),
                 const SizedBox(height: 16),
                 const Text(
-                  'New Recipes',
+                  'Today\'s Recipes',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,

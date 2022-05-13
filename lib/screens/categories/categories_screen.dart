@@ -40,7 +40,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       extendBody: true,
       appBar: AppBar(
         title: Text(widget.category),
-        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: () async {

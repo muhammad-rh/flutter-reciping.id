@@ -21,7 +21,6 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthServices()),
-        // Provider<AuthServices>.value(value: AuthServices()),
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => DetailViewModel()),
         ChangeNotifierProvider(create: (_) => SearchViewModel()),
