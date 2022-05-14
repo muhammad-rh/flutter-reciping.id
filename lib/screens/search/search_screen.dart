@@ -5,7 +5,9 @@ import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:flutter_mini_project/widgets/search_list_card.dart';
+import 'package:flutter_mini_project/widgets/shimmer_search_card.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SearchScreen extends StatefulWidget {
   final String search;
@@ -51,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     padding: const EdgeInsets.all(8),
                     child: SafeArea(
                       bottom: false,
-                      child: SearchField(),
+                      child: SearchField(searchkey: widget.search),
                     ),
                   ),
                   Expanded(
@@ -77,8 +79,19 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Consumer<SearchViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Shimmer.fromColors(
+              baseColor: Colors.grey.shade400,
+              highlightColor: Colors.grey.shade300,
+              child: ListView.separated(
+                padding: const EdgeInsets.all(12),
+                itemBuilder: (context, index) {
+                  return const ShimmerSearchCard();
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: 12.0);
+                },
+                itemCount: 10,
+              ),
             );
           }
 
@@ -144,7 +157,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(width: 4.0);
+                return const SizedBox(height: 4.0);
               },
               itemCount: isFound ? value.recipeList.length : 1,
             ),

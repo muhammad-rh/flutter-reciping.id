@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
-import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/catagories_list_card.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +59,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
       ),
       bottomNavigationBar: const BottomNavBar(
-        isHome: true,
+        isHome: false,
         isSearch: false,
         isBookmark: false,
         isProfil: false,

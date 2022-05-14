@@ -103,7 +103,7 @@ class BottomNavBar extends StatelessWidget {
                           ),
                           pageBuilder:
                               (context, animation, secondaryAnimation) {
-                            return const SearchScreen(search: 'coto');
+                            return const SearchScreen(search: '');
                           },
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {

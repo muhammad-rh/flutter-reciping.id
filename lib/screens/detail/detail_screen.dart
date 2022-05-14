@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
+import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -291,6 +292,12 @@ class _DetailScreenState extends State<DetailScreen> {
             );
           },
         ),
+      ),
+      bottomNavigationBar: const BottomNavBar(
+        isHome: false,
+        isSearch: false,
+        isBookmark: false,
+        isProfil: false,
       ),
     );
   }

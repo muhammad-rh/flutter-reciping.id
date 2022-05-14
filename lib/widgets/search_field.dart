@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/search/search_screen.dart';
 
-class SearchField extends StatelessWidget {
+class SearchField extends StatefulWidget {
+  String? searchkey;
   SearchField({
     Key? key,
+    this.searchkey,
   }) : super(key: key);
 
-  final _searchController = TextEditingController();
+  @override
+  State<SearchField> createState() => _SearchFieldState();
+}
+
+class _SearchFieldState extends State<SearchField> {
+  var _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.searchkey != null) {
+      _searchController.text = widget.searchkey!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

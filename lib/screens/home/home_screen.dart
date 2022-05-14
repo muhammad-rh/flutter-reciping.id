@@ -126,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
                 Row(
                   children: [
+                    const SizedBox(width: 4),
                     Image.asset('assets/categories.png', height: 20, width: 20),
                     const SizedBox(width: 5),
                     const Text(
@@ -175,7 +176,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: true,
         isSearch: false,
@@ -196,12 +196,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 baseColor: Colors.grey.shade400,
                 highlightColor: Colors.grey.shade300,
                 child: ListView.separated(
+                  padding: const EdgeInsets.all(4.0),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return const ShimmerRecipeCard();
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(width: 4.0);
+                    return const SizedBox(width: 12.0);
                   },
                   itemCount: 6,
                 ),
