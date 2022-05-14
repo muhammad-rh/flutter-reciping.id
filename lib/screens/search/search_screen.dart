@@ -4,7 +4,7 @@ import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
-import 'package:flutter_mini_project/widgets/catagories_list.dart';
+import 'package:flutter_mini_project/widgets/search_list_card.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -32,6 +32,8 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+  bool isFound = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                   Expanded(
-                    child: SearchRecipeListView(keys: widget.search),
+                    child: searchScreenListView(keys: widget.search),
                   ),
                 ],
               ),
@@ -69,18 +71,8 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-}
 
-class SearchRecipeListView extends StatelessWidget {
-  final String keys;
-  const SearchRecipeListView({
-    Key? key,
-    required this.keys,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    bool isFound = false;
+  SizedBox searchScreenListView({required String keys}) {
     return SizedBox(
       child: Consumer<SearchViewModel>(
         builder: (context, value, child) {
@@ -107,13 +99,39 @@ class SearchRecipeListView extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
                 if (isFound == true) {
-                  return SearchRecipeCard(
-                    title: value.recipeList[index].title ?? 'Untitle',
-                    thumb: value.recipeList[index].thumb ?? '',
-                    keys: value.recipeList[index].key ?? '',
-                    times: value.recipeList[index].times ?? '',
-                    portion: value.recipeList[index].serving ?? '',
-                    dificulty: value.recipeList[index].difficulty ?? '',
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                              const Duration(milliseconds: 500),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return DetailScreen(
+                              keys: value.recipeList[index].key!,
+                              secondThumb: value.recipeList[index].thumb!,
+                            );
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween2 = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween2),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: SearchListCard(
+                      title: value.recipeList[index].title ?? 'Untitle',
+                      thumb: value.recipeList[index].thumb ?? '',
+                      keys: value.recipeList[index].key ?? '',
+                      times: value.recipeList[index].times ?? '',
+                      portion: value.recipeList[index].serving ?? '',
+                      dificulty: value.recipeList[index].difficulty ?? '',
+                    ),
                   );
                 }
                 return Text(

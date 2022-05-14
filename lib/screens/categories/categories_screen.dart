@@ -3,7 +3,7 @@ import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
-import 'package:flutter_mini_project/widgets/catagories_list.dart';
+import 'package:flutter_mini_project/widgets/catagories_list_card.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -105,7 +105,7 @@ class CategoryRecipeListView extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
                 if (isFound == true) {
-                  return SearchRecipeCard(
+                  return CategoriesListCard(
                     title: value.recipeList[index].title ?? 'Untitle',
                     thumb: value.recipeList[index].thumb ?? '',
                     keys: value.recipeList[index].key ?? '',

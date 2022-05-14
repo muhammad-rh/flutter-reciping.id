@@ -5,7 +5,7 @@ import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
-import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
+import 'package:flutter_mini_project/widgets/recipe_list_card.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:flutter_mini_project/widgets/shimmer_categories_card.dart';
 import 'package:flutter_mini_project/widgets/shimmer_recipe_card.dart';
@@ -30,10 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
         Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
         Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
         setState(() {});
-        @override
-        void dispose() {
-          super.dispose();
-        }
       });
     }
   }
@@ -250,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-                child: NewRecipeCard(
+                child: RecipeListCard(
                   title: value.recipeList[index].title ?? 'Untitle',
                   thumb: value.recipeList[index].thumb ?? '',
                   keys: value.recipeList[index].key ?? '',

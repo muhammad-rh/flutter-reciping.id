@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NewRecipeCard extends StatelessWidget {
+class SearchListCard extends StatelessWidget {
   final String title;
   final String thumb;
   final String keys;
   final String times;
   final String portion;
   final String dificulty;
-  const NewRecipeCard({
+  const SearchListCard({
     Key? key,
     required this.title,
     required this.thumb,
@@ -19,90 +19,87 @@ class NewRecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Container(
+        height: 150,
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          image: DecorationImage(
+            image: NetworkImage(thumb),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.6),
+              BlendMode.dstATop,
+            ),
+          ),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Column(
+        child: Stack(
           children: [
-            ClipRRect(
-              child: Image.network(
-                thumb,
-                height: 200,
-                width: 300,
-                fit: BoxFit.cover,
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade100,
               ),
-              borderRadius: BorderRadius.circular(15.0),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 16,
-                bottom: 8,
-                left: 4,
-                right: 4,
-              ),
+            Align(
+              alignment: Alignment.bottomRight,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
                     children: [
-                      Image.asset('assets/time.png', height: 15, width: 15),
+                      Image.asset('assets/time.png', height: 18, width: 18),
                       const SizedBox(width: 2),
                       Text(
                         times,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 6),
                   Row(
                     children: [
-                      Image.asset('assets/portion.png', height: 15, width: 15),
+                      Image.asset('assets/portion.png', height: 18, width: 18),
                       const SizedBox(width: 2),
                       Text(
                         portion,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 6),
                   Row(
                     children: [
                       Image.asset('assets/difficulty.png',
-                          height: 15, width: 15),
+                          height: 18, width: 18),
                       const SizedBox(width: 2),
                       Text(
                         dificulty,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
                   ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
               ),
             ),
           ],

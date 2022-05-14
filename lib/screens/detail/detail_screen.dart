@@ -124,7 +124,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   ),
                                   const SizedBox(width: 2),
                                   Text(
-                                    value.detailList?.times! ?? '',
+                                    value.detailList?.times ?? '',
                                     style: const TextStyle(
                                       color: Colors.grey,
                                       fontSize: 14,
@@ -142,7 +142,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   ),
                                   const SizedBox(width: 2),
                                   Text(
-                                    value.detailList?.servings! ?? '',
+                                    value.detailList?.servings ?? '',
                                     style: const TextStyle(
                                       color: Colors.grey,
                                       fontSize: 14,
@@ -160,7 +160,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   ),
                                   const SizedBox(width: 2),
                                   Text(
-                                    value.detailList?.dificulty! ?? '',
+                                    value.detailList?.dificulty ?? '',
                                     style: const TextStyle(
                                       color: Colors.grey,
                                       fontSize: 14,
@@ -267,7 +267,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                         child: Scrollbar(
                                           child: SingleChildScrollView(
                                             child: Text(
-                                              '\t\t\t\t\t\t\t${value.detailList?.desc!}',
+                                              '\t\t\t\t\t\t\t${value.detailList?.desc}',
                                               style: const TextStyle(
                                                 fontSize: 16,
                                               ),

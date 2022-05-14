@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 
-class SearchRecipeCard extends StatelessWidget {
+class CategoriesListCard extends StatelessWidget {
   final String title;
   final String thumb;
   final String keys;
   final String times;
   final String portion;
   final String dificulty;
-  const SearchRecipeCard({
+  const CategoriesListCard({
     Key? key,
     required this.title,
     required this.thumb,
