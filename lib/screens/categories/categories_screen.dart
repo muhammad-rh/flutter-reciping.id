@@ -3,7 +3,7 @@ import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
-import 'package:flutter_mini_project/widgets/search_recipe_card.dart';
+import 'package:flutter_mini_project/widgets/catagories_list.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -38,6 +38,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category),
+        backgroundColor: const Color.fromARGB(255, 215, 14, 14),
       ),
       body: RefreshIndicator(
         onRefresh: () async {

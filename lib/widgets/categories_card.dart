@@ -13,14 +13,18 @@ class CategoriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       elevation: 4,
       child: TextButton(
         child: Text(category),
         style: TextButton.styleFrom(
-          primary: Colors.teal,
-          shape: const BeveledRectangleBorder(
+          backgroundColor: const Color.fromRGBO(251, 192, 45, 1),
+          primary: const Color.fromARGB(255, 24, 24, 24),
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(5),
+              Radius.circular(10),
             ),
           ),
         ),

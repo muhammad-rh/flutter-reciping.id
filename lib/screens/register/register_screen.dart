@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/login');
+                            Navigator.pop(context);
                           },
                           child: const Text(
                             'Login',
@@ -220,7 +220,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Material(
                       elevation: 5,
                       borderRadius: BorderRadius.circular(18),
-                      color: Colors.redAccent,
+                      color: const Color.fromARGB(255, 215, 14, 14),
                       child: MaterialButton(
                         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
                         minWidth: MediaQuery.of(context).size.width,
@@ -257,7 +257,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           'Terms & Conditions ',
                           textAlign: TextAlign.justify,
                           style: TextStyle(
-                            color: Colors.redAccent,
+                            color: Color.fromARGB(255, 215, 14, 14),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -269,7 +269,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           'Privacy Policy',
                           textAlign: TextAlign.justify,
                           style: TextStyle(
-                            color: Colors.redAccent,
+                            color: Color.fromARGB(255, 215, 14, 14),
                             fontWeight: FontWeight.w600,
                           ),
                         ),

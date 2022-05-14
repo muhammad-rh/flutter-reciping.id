@@ -49,10 +49,7 @@ class NewRecipeCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.timer_sharp,
-                        size: 20,
-                      ),
+                      Image.asset('assets/time.png', height: 15, width: 15),
                       const SizedBox(width: 2),
                       Text(
                         times,
@@ -67,10 +64,7 @@ class NewRecipeCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.palette_rounded,
-                        size: 20,
-                      ),
+                      Image.asset('assets/portion.png', height: 15, width: 15),
                       const SizedBox(width: 2),
                       Text(
                         portion,
@@ -85,10 +79,8 @@ class NewRecipeCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.https_sharp,
-                        size: 20,
-                      ),
+                      Image.asset('assets/difficulty.png',
+                          height: 15, width: 15),
                       const SizedBox(width: 2),
                       Text(
                         dificulty,

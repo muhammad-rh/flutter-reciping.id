@@ -4,7 +4,7 @@ import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
-import 'package:flutter_mini_project/widgets/search_recipe_card.dart';
+import 'package:flutter_mini_project/widgets/catagories_list.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {

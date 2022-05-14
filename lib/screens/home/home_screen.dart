@@ -128,12 +128,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SearchField(),
                 const SizedBox(height: 16),
-                const Text(
-                  'Categories',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  children: [
+                    Image.asset('assets/categories.png', height: 20, width: 20),
+                    const SizedBox(width: 5),
+                    const Text(
+                      'Categories',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 6),
                 categories(),
@@ -214,6 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           return ListView.separated(
+            padding: const EdgeInsets.only(left: 0),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return GestureDetector(

@@ -53,7 +53,7 @@ class SearchRecipeCard extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               SizedBox(
-                height: 40,
+                height: 35,
                 width: 130,
                 child: TextButton(
                   onPressed: () {
@@ -82,10 +82,10 @@ class SearchRecipeCard extends StatelessWidget {
                   style: TextButton.styleFrom(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(13.0),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
                     primary: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 9, 28, 44),
+                    backgroundColor: const Color.fromRGBO(251, 192, 45, 1),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                     ),
@@ -98,6 +98,7 @@ class SearchRecipeCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 24, 24, 24),
                         ),
                       ),
                     ],
