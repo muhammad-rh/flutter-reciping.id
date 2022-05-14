@@ -147,13 +147,25 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   );
                 }
-                return Text(
-                  '$keys not found',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                return Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 50),
+                      Image.asset(
+                        'assets/not_found.png',
+                        height: 400,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        '$keys not found',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  textAlign: TextAlign.center,
                 );
               },
               separatorBuilder: (context, index) {
