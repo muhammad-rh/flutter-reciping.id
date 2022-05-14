@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
-import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -90,8 +89,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      floatingActionButton: const NotchNavBar(isAdd: false),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
         isSearch: false,

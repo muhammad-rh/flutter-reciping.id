@@ -6,7 +6,6 @@ import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
-import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:provider/provider.dart';
 
@@ -115,10 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: const NotchNavBar(
-        isAdd: false,
-      ),
+      // resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: true,

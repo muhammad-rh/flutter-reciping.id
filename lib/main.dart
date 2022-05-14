@@ -9,6 +9,7 @@ import 'package:flutter_mini_project/screens/profile/profile_edit_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
 import 'package:flutter_mini_project/screens/register/register_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
+import 'package:flutter_mini_project/screens/splash/splash_screen.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
 import 'package:flutter_mini_project/utils/db_manager.dart';
 import 'package:flutter_mini_project/widgets/wrapper.dart';
@@ -39,7 +40,8 @@ void main() async {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => const Wrapper(),
+          '/': (context) => const SplashScreen(),
+          '/wrapper': (context) => const Wrapper(),
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegisterScreen(),
           '/home': (context) => const HomeScreen(),

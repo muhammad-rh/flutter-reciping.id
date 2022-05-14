@@ -3,7 +3,6 @@ import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
-import 'package:flutter_mini_project/widgets/notch_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:flutter_mini_project/widgets/search_recipe_card.dart';
 import 'package:provider/provider.dart';
@@ -63,8 +62,6 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
-      floatingActionButton: const NotchNavBar(isAdd: false),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
         isSearch: true,

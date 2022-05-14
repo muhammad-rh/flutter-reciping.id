@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/screens/created/created_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_screen.dart';
@@ -91,13 +90,12 @@ class BottomNavBar extends StatelessWidget {
                     );
                   },
           ),
-          const SizedBox(width: 40),
           IconButton(
             icon: Icon(
-              Icons.bookmark,
-              color: isBookmark ? Colors.white : Colors.grey,
+              Icons.person,
+              color: isProfil ? Colors.white : Colors.grey,
             ),
-            onPressed: isBookmark
+            onPressed: isProfil
                 ? () {}
                 : () {
                     Navigator.push(
@@ -110,7 +108,7 @@ class BottomNavBar extends StatelessWidget {
                           milliseconds: 500,
                         ),
                         pageBuilder: (context, animation, secondaryAnimation) {
-                          return const CreatedScreen();
+                          return const ProfileScreen();
                         },
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
