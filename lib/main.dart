@@ -11,7 +11,6 @@ import 'package:flutter_mini_project/screens/register/register_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/screens/splash/splash_screen.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
-import 'package:flutter_mini_project/utils/db_manager.dart';
 import 'package:flutter_mini_project/widgets/wrapper.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,6 @@ void main() async {
         ChangeNotifierProvider(create: (_) => DetailViewModel()),
         ChangeNotifierProvider(create: (_) => SearchViewModel()),
         ChangeNotifierProvider(create: (_) => CategoriesViewModel()),
-        ChangeNotifierProvider(create: (_) => DbManager()),
       ],
       child: MaterialApp(
         theme: ThemeData(

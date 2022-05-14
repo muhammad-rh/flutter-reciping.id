@@ -249,17 +249,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 15),
                     Wrap(
                       children: const [
-                        Text("By signing up, you're agree to our "),
                         Text(
-                          'Terms & Conditions',
+                          "By signing up, you're agree to our ",
+                          textAlign: TextAlign.justify,
+                        ),
+                        Text(
+                          'Terms & Conditions ',
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                             color: Colors.redAccent,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text("and "),
+                        Text(
+                          "and ",
+                          textAlign: TextAlign.justify,
+                        ),
                         Text(
                           'Privacy Policy',
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                             color: Colors.redAccent,
                             fontWeight: FontWeight.w600,

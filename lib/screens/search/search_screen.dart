@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16),
                     child: SafeArea(
                       bottom: false,
                       child: SearchField(),
@@ -107,8 +107,8 @@ class SearchRecipeListView extends StatelessWidget {
             child: ListView.separated(
               padding: const EdgeInsets.only(
                 top: 0,
-                left: 8.0,
-                right: 8.0,
+                left: 16.0,
+                right: 16.0,
                 bottom: 50.0,
               ),
               itemBuilder: (context, index) {

@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       trailing: SizedBox(
-                        height: 48,
+                        height: 46,
                         child: value.loggedInUser.imgUrl != null
                             ? ClipOval(
                                 child: Image.network(

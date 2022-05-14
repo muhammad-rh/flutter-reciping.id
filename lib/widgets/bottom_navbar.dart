@@ -23,136 +23,192 @@ class BottomNavBar extends StatelessWidget {
       shape: const CircularNotchedRectangle(),
       notchMargin: 5,
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          IconButton(
-            icon: Icon(
-              Icons.home_filled,
-              color: isHome ? Colors.white : Colors.grey,
+          SizedBox(
+            width: 60,
+            height: 56,
+            child: IconButton(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.home_filled,
+                    color: isHome ? Colors.white : Colors.grey,
+                  ),
+                  Text(
+                    'Home',
+                    style:
+                        TextStyle(color: isHome ? Colors.white : Colors.grey),
+                  ),
+                ],
+              ),
+              onPressed: isHome
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          reverseTransitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return const HomeScreen();
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
             ),
-            onPressed: isHome
-                ? () {}
-                : () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        reverseTransitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return const HomeScreen();
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          final tween = Tween(begin: 0.0, end: 1.0);
-                          return FadeTransition(
-                            opacity: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
           ),
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: isSearch ? Colors.white : Colors.grey,
+          SizedBox(
+            width: 60,
+            height: 56,
+            child: IconButton(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.search,
+                    color: isSearch ? Colors.white : Colors.grey,
+                  ),
+                  Text(
+                    'Search',
+                    style:
+                        TextStyle(color: isSearch ? Colors.white : Colors.grey),
+                  ),
+                ],
+              ),
+              onPressed: isSearch
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          reverseTransitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return const SearchScreen(search: 'coto');
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
             ),
-            onPressed: isSearch
-                ? () {}
-                : () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        reverseTransitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return const SearchScreen(search: 'coto');
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          final tween = Tween(begin: 0.0, end: 1.0);
-                          return FadeTransition(
-                            opacity: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
           ),
-          IconButton(
-            icon: Icon(
-              Icons.person,
-              color: isProfil ? Colors.white : Colors.grey,
+          SizedBox(
+            height: 56,
+            width: 60,
+            child: IconButton(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.library_books,
+                    color: isBookmark ? Colors.white : Colors.grey,
+                  ),
+                  Text(
+                    'Article',
+                    style: TextStyle(
+                        color: isBookmark ? Colors.white : Colors.grey),
+                  ),
+                ],
+              ),
+              onPressed: isBookmark
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          reverseTransitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return const ProfileScreen();
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
             ),
-            onPressed: isProfil
-                ? () {}
-                : () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        reverseTransitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return const ProfileScreen();
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          final tween = Tween(begin: 0.0, end: 1.0);
-                          return FadeTransition(
-                            opacity: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
           ),
-          IconButton(
-            icon: Icon(
-              Icons.person,
-              color: isProfil ? Colors.white : Colors.grey,
+          SizedBox(
+            height: 56,
+            width: 60,
+            child: IconButton(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.person,
+                    color: isProfil ? Colors.white : Colors.grey,
+                  ),
+                  Text(
+                    'Profil',
+                    style:
+                        TextStyle(color: isProfil ? Colors.white : Colors.grey),
+                  ),
+                ],
+              ),
+              onPressed: isProfil
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          reverseTransitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return const ProfileScreen();
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
             ),
-            onPressed: isProfil
-                ? () {}
-                : () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        reverseTransitionDuration: const Duration(
-                          milliseconds: 500,
-                        ),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return const ProfileScreen();
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          final tween = Tween(begin: 0.0, end: 1.0);
-                          return FadeTransition(
-                            opacity: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
           ),
         ],
       ),

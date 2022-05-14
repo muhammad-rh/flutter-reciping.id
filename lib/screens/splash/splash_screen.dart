@@ -99,15 +99,6 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // TextButton(
-                //   onPressed: () {},
-                //   child: const Text(
-                //     'Skip Tutorial',
-                //     style: TextStyle(
-                //       decoration: TextDecoration.underline,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
