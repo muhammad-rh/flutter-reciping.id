@@ -35,7 +35,6 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       body: RefreshIndicator(
         onRefresh: () async {
           Provider.of<SearchViewModel>(context, listen: false)
@@ -47,7 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(8),
                     child: SafeArea(
                       bottom: false,
                       child: SearchField(),
@@ -105,50 +104,16 @@ class SearchRecipeListView extends StatelessWidget {
 
           return Scrollbar(
             child: ListView.separated(
-              padding: const EdgeInsets.only(
-                top: 0,
-                left: 16.0,
-                right: 16.0,
-                bottom: 50.0,
-              ),
+              padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
                 if (isFound == true) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          transitionDuration: const Duration(
-                            milliseconds: 500,
-                          ),
-                          reverseTransitionDuration: const Duration(
-                            milliseconds: 500,
-                          ),
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
-                            return DetailScreen(
-                              keys: value.recipeList[index].key ?? '',
-                              secondThumb: value.recipeList[index].thumb ?? '',
-                            );
-                          },
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            final tween = Tween(begin: 0.0, end: 1.0);
-                            return FadeTransition(
-                              opacity: animation.drive(tween),
-                              child: child,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: SearchRecipeCard(
-                      title: value.recipeList[index].title ?? 'Untitle',
-                      thumb: value.recipeList[index].thumb ?? '',
-                      keys: value.recipeList[index].key ?? '',
-                      times: value.recipeList[index].times ?? '',
-                      portion: value.recipeList[index].serving ?? '',
-                      dificulty: value.recipeList[index].difficulty ?? '',
-                    ),
+                  return SearchRecipeCard(
+                    title: value.recipeList[index].title ?? 'Untitle',
+                    thumb: value.recipeList[index].thumb ?? '',
+                    keys: value.recipeList[index].key ?? '',
+                    times: value.recipeList[index].times ?? '',
+                    portion: value.recipeList[index].serving ?? '',
+                    dificulty: value.recipeList[index].difficulty ?? '',
                   );
                 }
                 return Text(

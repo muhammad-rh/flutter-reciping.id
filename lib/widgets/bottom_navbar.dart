@@ -19,7 +19,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.redAccent,
+      color: const Color.fromARGB(255, 215, 14, 14),
       shape: const CircularNotchedRectangle(),
       notchMargin: 5,
       child: Row(

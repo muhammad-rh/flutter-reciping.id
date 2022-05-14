@@ -13,7 +13,7 @@ class SearchField extends StatelessWidget {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 23, 47, 69),
+        color: const Color.fromARGB(255, 215, 14, 14),
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
@@ -42,15 +42,20 @@ class SearchField extends StatelessWidget {
             );
           }
         },
+        style: const TextStyle(color: Color.fromARGB(255, 248, 249, 253)),
         controller: _searchController,
         decoration: const InputDecoration(
           hintText: 'Search any recipes...',
           hintStyle: TextStyle(
-            color: Colors.grey,
+            color: Color.fromARGB(255, 248, 249, 253),
             height: 3.2,
           ),
-          suffixIcon: Icon(
+          prefixIcon: Icon(
             Icons.search,
+            color: Color.fromARGB(255, 248, 249, 253),
+          ),
+          suffixIcon: Icon(
+            Icons.display_settings_rounded,
             color: Color.fromARGB(255, 248, 249, 253),
           ),
           enabledBorder: OutlineInputBorder(

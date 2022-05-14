@@ -7,7 +7,10 @@ import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/new_recipe_card.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
+import 'package:flutter_mini_project/widgets/shimmer_categories_card.dart';
+import 'package:flutter_mini_project/widgets/shimmer_recipe_card.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,6 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
         Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
         Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
         setState(() {});
+        @override
+        void dispose() {
+          super.dispose();
+        }
       });
     }
   }
@@ -45,8 +52,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 Consumer<AuthServices>(
                   builder: (context, value, child) {
                     if (value.loggedInUser.uid == null) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Center(
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.shade400,
+                          highlightColor: Colors.grey.shade300,
+                          child: ListTile(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 4),
+                            title: Container(
+                              margin: const EdgeInsets.only(top: 5, bottom: 5),
+                              width: 50,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.amber,
+                              ),
+                            ),
+                            subtitle: Container(
+                              width: 100,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.amber,
+                              ),
+                            ),
+                            trailing: CircleAvatar(
+                              radius: 24,
+                              child: Container(
+                                width: 20,
+                                height: 20,
+                                color: Colors.amber,
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     }
 
@@ -96,25 +135,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                const SizedBox(height: 6),
+                categories(),
                 const SizedBox(height: 16),
-                const CategoriesListView(),
-                const SizedBox(height: 16),
-                const Text(
-                  'Today\'s Recipes',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  children: [
+                    Image.asset('assets/recipe.png', height: 20, width: 20),
+                    const SizedBox(width: 5),
+                    const Text(
+                      'Today\'s Recipes',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 6),
+                todaysRecipes(),
                 const SizedBox(height: 16),
-                const NewRecipesListView(),
-                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Image.asset('assets/tips.png', height: 20, width: 20),
+                    const SizedBox(width: 5),
+                    const Text(
+                      'Cooking Tips',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
               ],
             ),
           ),
         ),
       ),
-      // resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const BottomNavBar(
         isHome: true,
@@ -124,62 +182,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
 
-class CategoriesListView extends StatelessWidget {
-  const CategoriesListView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: Consumer<HomeViewModel>(
-        builder: (context, value, child) {
-          if (value.dataState == DataState.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (value.dataState == DataState.error) {
-            return const Center(
-              child: Text('Something went wrong'),
-            );
-          }
-
-          return ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return CategoriesCard(
-                category: value.categoryList[index].category ?? 'UnCategories',
-                keys: value.categoryList[index].key ?? '',
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(width: 4.0);
-            },
-            itemCount: value.categoryList.length,
-          );
-        },
-      ),
-    );
-  }
-}
-
-class NewRecipesListView extends StatelessWidget {
-  const NewRecipesListView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  SizedBox todaysRecipes() {
     return SizedBox(
       height: 330,
       child: Consumer<HomeViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade400,
+                highlightColor: Colors.grey.shade300,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return const ShimmerRecipeCard();
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(width: 4.0);
+                  },
+                  itemCount: 6,
+                ),
+              ),
             );
           }
 
@@ -233,6 +257,52 @@ class NewRecipesListView extends StatelessWidget {
               return const SizedBox(width: 4.0);
             },
             itemCount: value.recipeList.length,
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox categories() {
+    return SizedBox(
+      height: 50,
+      child: Consumer<HomeViewModel>(
+        builder: (context, value, child) {
+          if (value.dataState == DataState.loading) {
+            return ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey.shade400,
+                  highlightColor: Colors.grey.shade300,
+                  child: const ShimmerCategoriesCard(),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 4.0);
+              },
+              itemCount: 5,
+            );
+          }
+
+          if (value.dataState == DataState.error) {
+            return const Center(
+              child: Text('Something went wrong'),
+            );
+          }
+
+          return ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return CategoriesCard(
+                category: value.categoryList[index].category ?? 'UnCategories',
+                keys: value.categoryList[index].key ?? '',
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(width: 4.0);
+            },
+            itemCount: value.categoryList.length,
           );
         },
       ),

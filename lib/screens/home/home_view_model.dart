@@ -11,8 +11,6 @@ class HomeViewModel extends ChangeNotifier {
   final RecipeAPI _recipeAPI = RecipeAPI();
   List<Recipe> recipeList = [];
 
-  int page = 0;
-
   void changeState(DataState state) {
     dataState = state;
     notifyListeners();
@@ -22,7 +20,7 @@ class HomeViewModel extends ChangeNotifier {
     changeState(DataState.loading);
 
     try {
-      recipeList = await _recipeAPI.getRecipeByPage(page);
+      recipeList = await _recipeAPI.getRecipeByPage(0);
       changeState(DataState.filled);
     } catch (e) {
       changeState(DataState.error);
