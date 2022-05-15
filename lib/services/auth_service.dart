@@ -119,6 +119,7 @@ class AuthServices extends ChangeNotifier {
         },
       );
     } on FirebaseAuthException catch (error) {
+      print('Error: $error');
       switch (error.code) {
         case "invalid-email":
           errorMessage = "Your email address appears to be malformed.";
@@ -138,8 +139,13 @@ class AuthServices extends ChangeNotifier {
         case "operation-not-allowed":
           errorMessage = "Signing in with Email and Password is not enabled.";
           break;
+        case "email-already-in-use":
+          errorMessage =
+              "The email addres is already in use by another account.";
+          break;
         default:
           errorMessage = "An undefined Error happened.";
+          break;
       }
       Fluttertoast.showToast(msg: errorMessage!);
     }

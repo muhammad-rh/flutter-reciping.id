@@ -96,17 +96,36 @@ class _LoginScreenState extends State<LoginScreen> {
                             emailController.text = value!;
                           },
                           textInputAction: TextInputAction.next,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: InputDecoration(
-                            prefixIcon: const Icon(
-                              Icons.mail,
-                            ),
                             contentPadding:
                                 const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Email",
+                            hintText: "Enter your email here!",
+                            labelText: "Email",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            labelStyle: const TextStyle(
+                              color: Colors.black54,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: const BorderSide(
                                 color: Colors.black38,
+                                width: 2,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Colors.black38,
+                                width: 2,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(251, 192, 45, 1),
                                 width: 2,
                               ),
                             ),
@@ -131,17 +150,36 @@ class _LoginScreenState extends State<LoginScreen> {
                             passwordController.text = value!;
                           },
                           textInputAction: TextInputAction.done,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                           decoration: InputDecoration(
-                            prefixIcon: const Icon(
-                              Icons.vpn_key,
-                            ),
                             contentPadding:
                                 const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Password",
+                            hintText: "Enter your password here!",
+                            labelText: "Password",
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            labelStyle: const TextStyle(
+                              color: Colors.black54,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: const BorderSide(
                                 color: Colors.black38,
+                                width: 2,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Colors.black38,
+                                width: 2,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(251, 192, 45, 1),
                                 width: 2,
                               ),
                             ),

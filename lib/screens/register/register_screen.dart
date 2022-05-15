@@ -86,17 +86,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         firstNameController.text = value!;
                       },
                       textInputAction: TextInputAction.next,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.account_circle,
-                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "First Name",
+                        hintText: "Enter your First Name here!",
+                        labelText: "First Name",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        labelStyle: const TextStyle(
+                          color: Colors.black54,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
                             color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(251, 192, 45, 1),
                             width: 2,
                           ),
                         ),
@@ -117,17 +136,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         lastNameController.text = value!;
                       },
                       textInputAction: TextInputAction.next,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.account_circle,
-                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Last Name",
+                        hintText: "Enter your Last Name here!",
+                        labelText: "Last Name",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        labelStyle: const TextStyle(
+                          color: Colors.black54,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
                             color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(251, 192, 45, 1),
                             width: 2,
                           ),
                         ),
@@ -153,17 +191,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         emailController.text = value!;
                       },
                       textInputAction: TextInputAction.next,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.mail,
-                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Email",
+                        hintText: "Enter your Email here!",
+                        labelText: "Email",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        labelStyle: const TextStyle(
+                          color: Colors.black54,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
                             color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(251, 192, 45, 1),
                             width: 2,
                           ),
                         ),
@@ -188,17 +245,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         passwordController.text = value!;
                       },
                       textInputAction: TextInputAction.next,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.vpn_key,
-                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Password",
+                        hintText: "Enter your Password here!",
+                        labelText: "Password",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        labelStyle: const TextStyle(
+                          color: Colors.black54,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
                             color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(251, 192, 45, 1),
                             width: 2,
                           ),
                         ),
@@ -220,17 +296,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         confirmPasswordController.text = value!;
                       },
                       textInputAction: TextInputAction.done,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.vpn_key,
-                        ),
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Confirm Password",
+                        hintText: "Enter your Confirm Password here!",
+                        labelText: "Confirm Password",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        labelStyle: const TextStyle(
+                          color: Colors.black54,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
                             color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Color.fromRGBO(251, 192, 45, 1),
                             width: 2,
                           ),
                         ),
