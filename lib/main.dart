@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
-import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/login/login_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
+import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_view_model.dart';
 import 'package:flutter_mini_project/screens/register/register_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/screens/splash/splash_screen.dart';
@@ -21,7 +21,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthServices()),
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
-        ChangeNotifierProvider(create: (_) => DetailViewModel()),
+        ChangeNotifierProvider(create: (_) => RecipeDetailViewModel()),
         ChangeNotifierProvider(create: (_) => SearchViewModel()),
         ChangeNotifierProvider(create: (_) => CategoriesViewModel()),
       ],
@@ -44,25 +44,7 @@ void main() async {
           '/home': (context) => const HomeScreen(),
           '/profile': (context) => const ProfileScreen(),
         },
-        // home: ForceLogout(),
       ),
     ),
   );
 }
-
-// class ForceLogout extends StatelessWidget {
-//   const ForceLogout({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final manager = Provider.of<AuthServices>(context, listen: false);
-//     return Center(
-//       child: ElevatedButton(
-//         onPressed: () {
-//           manager.signOut(context);
-//         },
-//         child: Text('Logout'),
-//       ),
-//     );
-//   }
-// }

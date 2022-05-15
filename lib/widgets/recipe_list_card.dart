@@ -38,12 +38,8 @@ class RecipeListCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.0),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 16,
-                bottom: 8,
-                left: 4,
-                right: 4,
-              ),
+              padding:
+                  const EdgeInsets.only(top: 16, bottom: 8, left: 4, right: 4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

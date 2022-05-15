@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
+import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
+import 'package:flutter_mini_project/widgets/article_card.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/categories_card.dart';
 import 'package:flutter_mini_project/widgets/recipe_list_card.dart';
@@ -29,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         await Provider.of<AuthServices>(context, listen: false).retrieveUser();
         Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
         Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
+        Provider.of<HomeViewModel>(context, listen: false)
+            .getArticleList('tips-masak');
         setState(() {});
       });
     }
@@ -177,6 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 8),
+                cookingTips(),
               ],
             ),
           ),
@@ -187,6 +191,59 @@ class _HomeScreenState extends State<HomeScreen> {
         isSearch: false,
         isBookmark: false,
         isProfil: false,
+      ),
+    );
+  }
+
+  SizedBox cookingTips() {
+    return SizedBox(
+      height: 300,
+      child: Consumer<HomeViewModel>(
+        builder: (context, value, child) {
+          if (value.dataState == DataState.loading) {
+            return Center(
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade400,
+                highlightColor: Colors.grey.shade300,
+                child: ListView.separated(
+                  padding: const EdgeInsets.all(4.0),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return const ShimmerRecipeCard();
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(width: 12.0);
+                  },
+                  itemCount: 6,
+                ),
+              ),
+            );
+          }
+
+          if (value.dataState == DataState.error) {
+            return const Center(
+              child: Text('Something went wrong'),
+            );
+          }
+
+          return ListView.separated(
+            padding: const EdgeInsets.only(left: 0),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: ArticleCard(
+                  title: value.articleList[index].title!,
+                  thumb: value.articleList[index].thumb!,
+                ),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(width: 4.0);
+            },
+            itemCount: value.articleList.length,
+          );
+        },
       ),
     );
   }
@@ -237,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         milliseconds: 500,
                       ),
                       pageBuilder: (context, animation, secondaryAnimation) {
-                        return DetailScreen(
+                        return RecipeDetailScreen(
                           keys: value.recipeList[index].key ?? '',
                           secondThumb: value.recipeList[index].thumb ?? '',
                         );

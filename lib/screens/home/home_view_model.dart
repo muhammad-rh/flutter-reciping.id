@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/models/api/article_api.dart';
 import 'package:flutter_mini_project/models/api/categorys_api.dart';
 import 'package:flutter_mini_project/models/api/recipe_api.dart';
+import 'package:flutter_mini_project/models/article.dart';
 import 'package:flutter_mini_project/models/category.dart';
 import 'package:flutter_mini_project/models/recipe.dart';
 
@@ -35,6 +37,20 @@ class HomeViewModel extends ChangeNotifier {
 
     try {
       categoryList = await _categorysAPI.getCategorys();
+      changeState(DataState.filled);
+    } catch (e) {
+      changeState(DataState.error);
+    }
+  }
+
+  final ArticleAPI _articleAPI = ArticleAPI();
+  List<Article> articleList = [];
+
+  void getArticleList(String articleKey) async {
+    changeState(DataState.loading);
+
+    try {
+      articleList = await _articleAPI.getArticle(articleKey);
       changeState(DataState.filled);
     } catch (e) {
       changeState(DataState.error);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
+import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
 
 class CategoriesListCard extends StatelessWidget {
   final String title;
@@ -63,7 +63,7 @@ class CategoriesListCard extends StatelessWidget {
                         reverseTransitionDuration:
                             const Duration(milliseconds: 500),
                         pageBuilder: (context, animation, secondaryAnimation) {
-                          return DetailScreen(
+                          return RecipeDetailScreen(
                             keys: keys,
                             secondThumb: thumb,
                           );

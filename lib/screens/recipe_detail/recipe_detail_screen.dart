@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
+import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_view_model.dart';
 import 'package:flutter_mini_project/widgets/shimmer_detail.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class DetailScreen extends StatefulWidget {
+class RecipeDetailScreen extends StatefulWidget {
   final String secondThumb;
   final String keys;
-  const DetailScreen({
+  const RecipeDetailScreen({
     Key? key,
     required this.secondThumb,
     required this.keys,
   }) : super(key: key);
 
   @override
-  State<DetailScreen> createState() => _DetailScreenState();
+  State<RecipeDetailScreen> createState() => _RecipeDetailScreen();
 }
 
-class _DetailScreenState extends State<DetailScreen> {
+class _RecipeDetailScreen extends State<RecipeDetailScreen> {
   @override
   void initState() {
     super.initState();
 
     if (WidgetsBinding.instance != null) {
       WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        Provider.of<DetailViewModel>(context, listen: false)
-            .getDetailList(widget.keys);
+        Provider.of<RecipeDetailViewModel>(context, listen: false)
+            .getRecipeDetailList(widget.keys);
       });
     }
   }
@@ -40,7 +40,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         backgroundColor: const Color.fromARGB(255, 215, 14, 14),
       ),
-      body: Consumer<DetailViewModel>(
+      body: Consumer<RecipeDetailViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
             return SingleChildScrollView(

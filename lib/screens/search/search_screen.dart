@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/screens/detail/detail_screen.dart';
+import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
@@ -121,7 +121,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               const Duration(milliseconds: 500),
                           pageBuilder:
                               (context, animation, secondaryAnimation) {
-                            return DetailScreen(
+                            return RecipeDetailScreen(
                               keys: value.recipeList[index].key!,
                               secondThumb: value.recipeList[index].thumb!,
                             );

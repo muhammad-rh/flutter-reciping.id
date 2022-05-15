@@ -1,16 +1,17 @@
-class ResponseResultDetail {
+class ResponseResultRecipeDetail {
   String? method;
   bool? status;
-  Detail? results;
+  RecipeDetail? results;
 
-  ResponseResultDetail.fromJson(Map<String, dynamic> json) {
+  ResponseResultRecipeDetail.fromJson(Map<String, dynamic> json) {
     method = json['method'];
     status = json['status'];
-    results = json['results'] != null ? Detail.fromJson(json['results']) : null;
+    results =
+        json['results'] != null ? RecipeDetail.fromJson(json['results']) : null;
   }
 }
 
-class Detail {
+class RecipeDetail {
   String? title;
   String? thumb;
   String? servings;
@@ -22,7 +23,7 @@ class Detail {
   List<String>? ingredient;
   List<String>? step;
 
-  Detail({
+  RecipeDetail({
     this.title,
     this.thumb,
     this.servings,
@@ -35,7 +36,7 @@ class Detail {
     this.step,
   });
 
-  Detail.fromJson(Map<String, dynamic> json) {
+  RecipeDetail.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     thumb = json['thumb'];
     servings = json['servings'];
