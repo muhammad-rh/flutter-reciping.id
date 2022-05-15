@@ -119,7 +119,6 @@ class AuthServices extends ChangeNotifier {
         },
       );
     } on FirebaseAuthException catch (error) {
-      print('Error: $error');
       switch (error.code) {
         case "invalid-email":
           errorMessage = "Your email address appears to be malformed.";

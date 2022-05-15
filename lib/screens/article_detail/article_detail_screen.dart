@@ -69,25 +69,98 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Stack(
+                  child: Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      image: DecorationImage(
+                        image: (value.detailList!.thumb != null)
+                            ? NetworkImage(value.detailList!.thumb!)
+                            : NetworkImage(widget.secondThumb),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.6),
+                          BlendMode.dstATop,
+                        ),
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          image: DecorationImage(
-                            image: (value.detailList!.thumb != null)
-                                ? NetworkImage(value.detailList!.thumb!)
-                                : NetworkImage(widget.secondThumb),
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.6),
-                              BlendMode.dstATop,
+                      const SizedBox(height: 4),
+                      Text(
+                        value.detailList?.title ?? '',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(
+                            child: Image.asset(
+                              'assets/time.png',
+                              height: 18,
+                              width: 18,
                             ),
                           ),
-                          borderRadius: BorderRadius.circular(12),
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Author : ',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            value.detailList!.author!,
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/portion.png',
+                            height: 18,
+                            width: 18,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Date Published : ',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            value.detailList!.datePublished!,
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Description',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        value.detailList!.description!,
+                        style: const TextStyle(
+                          fontSize: 17,
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
                     ],
                   ),
                 ),

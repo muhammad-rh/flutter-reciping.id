@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/search/search_screen.dart';
 
@@ -13,7 +15,7 @@ class SearchField extends StatefulWidget {
 }
 
 class _SearchFieldState extends State<SearchField> {
-  var _searchController = TextEditingController();
+  final _searchController = TextEditingController();
 
   @override
   void initState() {

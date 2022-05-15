@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/screens/article_detail/article_detail_view_model.dart';
 import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
@@ -24,6 +25,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => RecipeDetailViewModel()),
         ChangeNotifierProvider(create: (_) => SearchViewModel()),
         ChangeNotifierProvider(create: (_) => CategoriesViewModel()),
+        ChangeNotifierProvider(create: (_) => ArticleDetailViewModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(

@@ -34,12 +34,17 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.home_filled,
-                    color: isHome ? Colors.white : Colors.grey,
+                    color: !isHome
+                        ? Colors.white
+                        : const Color.fromRGBO(251, 192, 45, 1),
                   ),
                   Text(
                     'Home',
-                    style:
-                        TextStyle(color: isHome ? Colors.white : Colors.grey),
+                    style: TextStyle(
+                      color: !isHome
+                          ? Colors.white
+                          : const Color.fromRGBO(251, 192, 45, 1),
+                    ),
                   ),
                 ],
               ),
@@ -80,12 +85,17 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.search,
-                    color: isSearch ? Colors.white : Colors.grey,
+                    color: !isSearch
+                        ? Colors.white
+                        : const Color.fromRGBO(251, 192, 45, 1),
                   ),
                   Text(
                     'Search',
-                    style:
-                        TextStyle(color: isSearch ? Colors.white : Colors.grey),
+                    style: TextStyle(
+                      color: !isSearch
+                          ? Colors.white
+                          : const Color.fromRGBO(251, 192, 45, 1),
+                    ),
                   ),
                 ],
               ),
@@ -126,12 +136,17 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.library_books,
-                    color: isBookmark ? Colors.white : Colors.grey,
+                    color: !isBookmark
+                        ? Colors.white
+                        : const Color.fromRGBO(251, 192, 45, 1),
                   ),
                   Text(
                     'Article',
                     style: TextStyle(
-                        color: isBookmark ? Colors.white : Colors.grey),
+                      color: !isBookmark
+                          ? Colors.white
+                          : const Color.fromRGBO(251, 192, 45, 1),
+                    ),
                   ),
                 ],
               ),
@@ -172,12 +187,17 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.person,
-                    color: isProfil ? Colors.white : Colors.grey,
+                    color: !isProfil
+                        ? Colors.white
+                        : const Color.fromRGBO(251, 192, 45, 1),
                   ),
                   Text(
                     'Profile',
-                    style:
-                        TextStyle(color: isProfil ? Colors.white : Colors.grey),
+                    style: TextStyle(
+                      color: !isProfil
+                          ? Colors.white
+                          : const Color.fromRGBO(251, 192, 45, 1),
+                    ),
                   ),
                 ],
               ),
