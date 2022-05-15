@@ -52,7 +52,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: SafeArea(
-                      bottom: false,
                       child: SearchField(searchkey: widget.search),
                     ),
                   ),

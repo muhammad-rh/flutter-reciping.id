@@ -34,6 +34,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     }
   }
 
+  bool isFound = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               child: Column(
                 children: [
                   Expanded(
-                    child: CategoryRecipeListView(keys: widget.keys),
+                    child: categoryRecipeList(keys: widget.keys),
                   ),
                 ],
               ),
@@ -68,18 +70,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
     );
   }
-}
 
-class CategoryRecipeListView extends StatelessWidget {
-  final String keys;
-  const CategoryRecipeListView({
-    Key? key,
-    required this.keys,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    bool isFound = false;
+  SizedBox categoryRecipeList({required String keys}) {
     return SizedBox(
       child: Consumer<CategoriesViewModel>(
         builder: (context, value, child) {
@@ -116,29 +108,19 @@ class CategoryRecipeListView extends StatelessWidget {
             child: ListView.separated(
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
-                if (isFound == true) {
-                  return CategoriesListCard(
-                    title: value.recipeList[index].title ?? 'Untitle',
-                    thumb: value.recipeList[index].thumb ?? '',
-                    keys: value.recipeList[index].key ?? '',
-                    times: value.recipeList[index].times ?? '',
-                    portion: value.recipeList[index].portion ?? '',
-                    dificulty: value.recipeList[index].dificulty ?? '',
-                  );
-                }
-                return Text(
-                  '$keys not found',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
+                return CategoriesListCard(
+                  title: value.recipeList[index].title ?? 'Untitle',
+                  thumb: value.recipeList[index].thumb ?? '',
+                  keys: value.recipeList[index].key ?? '',
+                  times: value.recipeList[index].times ?? '',
+                  portion: value.recipeList[index].portion ?? '',
+                  dificulty: value.recipeList[index].dificulty ?? '',
                 );
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 4.0);
               },
-              itemCount: isFound ? value.recipeList.length : 1,
+              itemCount: value.recipeList.length,
             ),
           );
         },

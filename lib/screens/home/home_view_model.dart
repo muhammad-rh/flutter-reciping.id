@@ -42,18 +42,4 @@ class HomeViewModel extends ChangeNotifier {
       changeState(DataState.error);
     }
   }
-
-  final ArticleAPI _articleAPI = ArticleAPI();
-  List<Article> articleList = [];
-
-  void getArticleList(String articleKey) async {
-    changeState(DataState.loading);
-
-    try {
-      articleList = await _articleAPI.getArticle(articleKey);
-      changeState(DataState.filled);
-    } catch (e) {
-      changeState(DataState.error);
-    }
-  }
 }

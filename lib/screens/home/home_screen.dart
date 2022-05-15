@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/article/article_view_model.dart';
 import 'package:flutter_mini_project/screens/article_detail/article_detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await Provider.of<AuthServices>(context, listen: false).retrieveUser();
         Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
         Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
-        Provider.of<HomeViewModel>(context, listen: false)
+        Provider.of<ArticleViewModel>(context, listen: false)
             .getArticleList('tips-masak');
         setState(() {});
       });
@@ -199,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
   SizedBox cookingTips() {
     return SizedBox(
       height: 300,
-      child: Consumer<HomeViewModel>(
+      child: Consumer<ArticleViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
             return Center(
