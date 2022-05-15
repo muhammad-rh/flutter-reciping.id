@@ -100,15 +100,19 @@ class AuthServices extends ChangeNotifier {
             email: email,
             password: password,
           )
-          .then((value) => {
-                postDetailsToFirestore(
-                  firstName,
-                  lastName,
-                  null,
-                  context,
-                  false,
-                )
-              })
+          .then(
+            (value) => {
+              postDetailsToFirestore(
+                  firstNameController: firstName,
+                  lastNameController: lastName,
+                  context: context,
+                  isUpdate: false,
+                  image: null,
+                  changeImg: true,
+                  cityController: '',
+                  occupationController: ''),
+            },
+          )
           .catchError(
         (e) {
           Fluttertoast.showToast(msg: e!.message);
@@ -143,19 +147,31 @@ class AuthServices extends ChangeNotifier {
 
   Future<void> signOut(BuildContext context) async {
     await _auth.signOut();
+    Fluttertoast.showToast(msg: "Sign Out succesfully :)");
     Navigator.pushReplacementNamed(context, '/login');
   }
 
-  postDetailsToFirestore(String firstNameController, String lastNameController,
-      File? _image, BuildContext context, bool isUpdate) async {
+  postDetailsToFirestore({
+    required String firstNameController,
+    required String lastNameController,
+    String? occupationController,
+    String? cityController,
+    File? image,
+    bool? changeImg,
+    required BuildContext context,
+    required bool isUpdate,
+  }) async {
     User? user = _auth.currentUser;
 
     final String? imgUrl;
 
-    if (_image == null) {
-      imgUrl = null;
-    } else {
-      imgUrl = await uploadImage(_image);
+    if (changeImg == true) {
+      if (image == null) {
+        imgUrl = null;
+      } else {
+        imgUrl = await uploadImage(image);
+      }
+      userModel.imgUrl = imgUrl;
     }
 
     // writing all the values
@@ -163,7 +179,8 @@ class AuthServices extends ChangeNotifier {
     userModel.uid = user.uid;
     userModel.firstName = firstNameController;
     userModel.lastName = lastNameController;
-    userModel.imgUrl = imgUrl;
+    userModel.occupation = occupationController;
+    userModel.city = cityController;
 
     if (isUpdate) {
       await _collections

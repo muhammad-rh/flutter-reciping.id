@@ -175,7 +175,7 @@ class BottomNavBar extends StatelessWidget {
                     color: isProfil ? Colors.white : Colors.grey,
                   ),
                   Text(
-                    'Profil',
+                    'Profile',
                     style:
                         TextStyle(color: isProfil ? Colors.white : Colors.grey),
                   ),

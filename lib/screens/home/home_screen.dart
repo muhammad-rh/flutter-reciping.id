@@ -115,8 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             : CircleAvatar(
                                 child: Text(
                                   '${value.loggedInUser.firstName?[0].toUpperCase()}${value.loggedInUser.lastName?[0].toUpperCase()}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black87,
+                                  ),
                                 ),
                                 radius: 24,
+                                backgroundColor:
+                                    const Color.fromRGBO(251, 192, 45, 1),
                               ),
                       ),
                     );

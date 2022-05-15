@@ -105,6 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "Email",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Colors.black38,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),
@@ -136,6 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "Password",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                color: Colors.black38,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),
@@ -167,26 +175,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        // const SizedBox(height: 15),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.center,
-                        //   children: [
-                        //     const Text("If you are new / "),
-                        //     GestureDetector(
-                        // onTap: () {
-                        //   Navigator.pushNamed(context, '/register');
-                        // },
-                        //       child: const Text(
-                        //         'Sign Up',
-                        //         style: TextStyle(
-                        //           color: Colors.redAccent,
-                        //           fontWeight: FontWeight.w600,
-                        //           fontSize: 15,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                       ],
                     ),
                   ),

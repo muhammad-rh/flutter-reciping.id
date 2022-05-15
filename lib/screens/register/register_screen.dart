@@ -95,6 +95,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "First Name",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -105,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return ("Second Name cannot be Empty");
+                          return ("Last Name cannot be Empty");
                         }
                         return null;
                       },
@@ -122,6 +126,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "Last Name",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -154,6 +162,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "Email",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -185,6 +197,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -213,6 +229,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "Confirm Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black38,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),

@@ -5,7 +5,6 @@ import 'package:flutter_mini_project/screens/detail/detail_view_model.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/login/login_screen.dart';
-import 'package:flutter_mini_project/screens/profile/profile_edit_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
 import 'package:flutter_mini_project/screens/register/register_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_view_model.dart';
@@ -44,9 +43,26 @@ void main() async {
           '/register': (context) => const RegisterScreen(),
           '/home': (context) => const HomeScreen(),
           '/profile': (context) => const ProfileScreen(),
-          '/update': (context) => const ProfileEditScreen(),
         },
+        // home: ForceLogout(),
       ),
     ),
   );
 }
+
+// class ForceLogout extends StatelessWidget {
+//   const ForceLogout({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final manager = Provider.of<AuthServices>(context, listen: false);
+//     return Center(
+//       child: ElevatedButton(
+//         onPressed: () {
+//           manager.signOut(context);
+//         },
+//         child: Text('Logout'),
+//       ),
+//     );
+//   }
+// }
