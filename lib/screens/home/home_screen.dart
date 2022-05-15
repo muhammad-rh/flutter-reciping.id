@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/article_detail/article_detail_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
 import 'package:flutter_mini_project/services/auth_service.dart';
@@ -231,7 +232,33 @@ class _HomeScreenState extends State<HomeScreen> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(
+                        milliseconds: 500,
+                      ),
+                      reverseTransitionDuration: const Duration(
+                        milliseconds: 500,
+                      ),
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return ArticleDetailScreen(
+                          tags: value.articleList[index].tags!,
+                          keys: value.articleList[index].key!,
+                          secondThumb: value.articleList[index].thumb!,
+                        );
+                      },
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        final tween = Tween(begin: 0.0, end: 1.0);
+                        return FadeTransition(
+                          opacity: animation.drive(tween),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
                 child: ArticleCard(
                   title: value.articleList[index].title!,
                   thumb: value.articleList[index].thumb!,
