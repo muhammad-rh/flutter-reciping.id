@@ -34,6 +34,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   String? fileName;
   bool changeImg = false;
 
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    occupationController.dispose();
+    cityController.dispose();
+    super.dispose();
+  }
+
   Future<void> chooseImage() async {
     final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {

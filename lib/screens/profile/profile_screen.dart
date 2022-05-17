@@ -19,6 +19,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final cityController = TextEditingController();
 
   @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    occupationController.dispose();
+    cityController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     if (WidgetsBinding.instance != null) {

@@ -19,6 +19,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final confirmPasswordController = TextEditingController();
 
   @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var mediaQueryData = MediaQuery.of(context);
     var heightScreen = mediaQueryData.size.height;
