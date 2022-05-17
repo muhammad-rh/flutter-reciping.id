@@ -106,7 +106,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                         children: [
                           SizedBox(
                             child: Image.asset(
-                              'assets/time.png',
+                              'assets/author.png',
                               height: 18,
                               width: 18,
                             ),
@@ -128,7 +128,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                       Row(
                         children: [
                           Image.asset(
-                            'assets/portion.png',
+                            'assets/date.png',
                             height: 18,
                             width: 18,
                           ),

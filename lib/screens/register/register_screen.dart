@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Enter your First Name here!",
+                        hintText: "Enter your First Name",
                         labelText: "First Name",
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         labelStyle: const TextStyle(
@@ -142,7 +142,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Enter your Last Name here!",
+                        hintText: "Enter your Last Name",
                         labelText: "Last Name",
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         labelStyle: const TextStyle(
@@ -197,7 +197,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Enter your Email here!",
+                        hintText: "Enter your Email",
                         labelText: "Email",
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         labelStyle: const TextStyle(
@@ -251,7 +251,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Enter your Password here!",
+                        hintText: "Enter your Password",
                         labelText: "Password",
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         labelStyle: const TextStyle(
@@ -302,7 +302,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding:
                             const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Enter your Confirm Password here!",
+                        hintText: "Enter your Confirm Password",
                         labelText: "Confirm Password",
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         labelStyle: const TextStyle(

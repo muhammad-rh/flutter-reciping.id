@@ -330,7 +330,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
         isSearch: false,
-        isBookmark: false,
+        isArticle: false,
         isProfil: true,
       ),
     );

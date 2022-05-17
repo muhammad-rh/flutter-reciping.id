@@ -34,6 +34,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       appBar: AppBar(
         title: const Text('Article'),
         backgroundColor: const Color.fromARGB(255, 215, 14, 14),
+        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -48,9 +49,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
         ),
       ),
       bottomNavigationBar: const BottomNavBar(
-        isHome: true,
+        isHome: false,
         isSearch: false,
-        isBookmark: false,
+        isArticle: true,
         isProfil: false,
       ),
     );
@@ -87,8 +88,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return ArticleListCard(
-                  title: value.articleList[index].title!,
-                  thumb: value.articleList[index].thumb!,
+                  title: value.articleList[index].title ??
+                      value.articleList[index].key ??
+                      'Untitle',
+                  thumb: value.articleList[index].thumb ??
+                      'https://firebasestorage.googleapis.com/v0/b/recipe-auth-b2ab8.appspot.com/o/emptyThumb.png?alt=media&token=81b248e3-e01a-4094-a966-85d9f71c5091',
                   keys: value.articleList[index].key!,
                   tags: value.articleList[index].tags!,
                 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mini_project/screens/article/article_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_screen.dart';
@@ -6,13 +7,13 @@ import 'package:flutter_mini_project/screens/search/search_screen.dart';
 class BottomNavBar extends StatelessWidget {
   final bool isHome;
   final bool isSearch;
-  final bool isBookmark;
+  final bool isArticle;
   final bool isProfil;
   const BottomNavBar({
     Key? key,
     required this.isHome,
     required this.isSearch,
-    required this.isBookmark,
+    required this.isArticle,
     required this.isProfil,
   }) : super(key: key);
 
@@ -136,21 +137,21 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.library_books,
-                    color: !isBookmark
+                    color: !isArticle
                         ? Colors.white
                         : const Color.fromRGBO(251, 192, 45, 1),
                   ),
                   Text(
                     'Article',
                     style: TextStyle(
-                      color: !isBookmark
+                      color: !isArticle
                           ? Colors.white
                           : const Color.fromRGBO(251, 192, 45, 1),
                     ),
                   ),
                 ],
               ),
-              onPressed: isBookmark
+              onPressed: isArticle
                   ? () {}
                   : () {
                       Navigator.push(
@@ -164,7 +165,7 @@ class BottomNavBar extends StatelessWidget {
                           ),
                           pageBuilder:
                               (context, animation, secondaryAnimation) {
-                            return const ProfileScreen();
+                            return const ArticleScreen();
                           },
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {

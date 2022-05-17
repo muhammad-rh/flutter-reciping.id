@@ -21,6 +21,7 @@ class ArticleViewModel extends ChangeNotifier {
 
     try {
       articleList = await _articleAPI.getArticle(articleKey);
+      print('articleList: ${articleList[0].title}');
       changeState(DataState.filled);
     } catch (e) {
       changeState(DataState.error);

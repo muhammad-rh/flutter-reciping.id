@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Enter your email here!",
+                            hintText: "Enter your email",
                             labelText: "Email",
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             labelStyle: const TextStyle(
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Enter your password here!",
+                            hintText: "Enter your password",
                             labelText: "Password",
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             labelStyle: const TextStyle(

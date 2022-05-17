@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: const BottomNavBar(
         isHome: true,
         isSearch: false,
-        isBookmark: false,
+        isArticle: false,
         isProfil: false,
       ),
     );
@@ -246,7 +246,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return ArticleDetailScreen(
                           tags: value.articleList[index].tags!,
                           keys: value.articleList[index].key!,
-                          secondThumb: value.articleList[index].thumb!,
+                          secondThumb: value.articleList[index].thumb ??
+                              'https://firebasestorage.googleapis.com/v0/b/recipe-auth-b2ab8.appspot.com/o/emptyThumb.png?alt=media&token=81b248e3-e01a-4094-a966-85d9f71c5091',
                         );
                       },
                       transitionsBuilder:
@@ -261,8 +262,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 child: ArticleCard(
-                  title: value.articleList[index].title!,
-                  thumb: value.articleList[index].thumb!,
+                  title: value.articleList[index].title ??
+                      value.articleList[index].key ??
+                      'Untitle',
+                  thumb: value.articleList[index].thumb ??
+                      'https://firebasestorage.googleapis.com/v0/b/recipe-auth-b2ab8.appspot.com/o/emptyThumb.png?alt=media&token=81b248e3-e01a-4094-a966-85d9f71c5091',
                 ),
               );
             },
@@ -339,7 +343,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 child: RecipeListCard(
-                  title: value.recipeList[index].title ?? 'Untitle',
+                  title: value.recipeList[index].title ??
+                      value.recipeList[index].key ??
+                      'Untitle',
                   thumb: value.recipeList[index].thumb ?? '',
                   keys: value.recipeList[index].key ?? '',
                   times: value.recipeList[index].times ?? '',

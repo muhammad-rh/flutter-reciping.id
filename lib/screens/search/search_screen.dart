@@ -67,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
         isSearch: true,
-        isBookmark: false,
+        isArticle: false,
         isProfil: false,
       ),
     );

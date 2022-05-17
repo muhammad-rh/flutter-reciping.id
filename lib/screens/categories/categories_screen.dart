@@ -65,7 +65,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       bottomNavigationBar: const BottomNavBar(
         isHome: false,
         isSearch: false,
-        isBookmark: false,
+        isArticle: false,
         isProfil: false,
       ),
     );
