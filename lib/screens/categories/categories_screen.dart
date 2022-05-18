@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
-import 'package:flutter_mini_project/screens/categories/categories_view_model.dart';
+import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/catagories_list_card.dart';
 import 'package:flutter_mini_project/widgets/shimmer_categories_list.dart';
@@ -27,8 +27,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     if (WidgetsBinding.instance != null) {
       WidgetsBinding.instance!.addPostFrameCallback(
         (timeStamp) {
-          Provider.of<CategoriesViewModel>(context, listen: false)
-              .getCategoryList(widget.keys);
+          Provider.of<HomeViewModel>(context, listen: false)
+              .getCategoriesList(widget.keys);
         },
       );
     }
@@ -45,8 +45,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          Provider.of<CategoriesViewModel>(context, listen: false)
-              .getCategoryList(widget.keys);
+          Provider.of<HomeViewModel>(context, listen: false)
+              .getCategoriesList(widget.keys);
         },
         child: Column(
           children: [
@@ -73,7 +73,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   SizedBox categoryRecipeList({required String keys}) {
     return SizedBox(
-      child: Consumer<CategoriesViewModel>(
+      child: Consumer<HomeViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
             return ListView.separated(
@@ -109,18 +109,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
                 return CategoriesListCard(
-                  title: value.recipeList[index].title ?? 'Untitle',
-                  thumb: value.recipeList[index].thumb ?? '',
-                  keys: value.recipeList[index].key ?? '',
-                  times: value.recipeList[index].times ?? '',
-                  portion: value.recipeList[index].portion ?? '',
-                  dificulty: value.recipeList[index].dificulty ?? '',
+                  title: value.categoriesList[index].title ?? 'Untitle',
+                  thumb: value.categoriesList[index].thumb ?? '',
+                  keys: value.categoriesList[index].key ?? '',
+                  times: value.categoriesList[index].times ?? '',
+                  portion: value.categoriesList[index].portion ?? '',
+                  dificulty: value.categoriesList[index].dificulty ?? '',
                 );
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 4.0);
               },
-              itemCount: value.recipeList.length,
+              itemCount: value.categoriesList.length,
             ),
           );
         },

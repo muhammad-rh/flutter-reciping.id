@@ -3,9 +3,11 @@ import 'package:flutter_mini_project/constans/state.dart';
 import 'package:flutter_mini_project/models/api/categorys_api.dart';
 import 'package:flutter_mini_project/models/api/recipe_api.dart';
 import 'package:flutter_mini_project/models/api/recipe_detail_api.dart';
+import 'package:flutter_mini_project/models/api/search_api.dart';
 import 'package:flutter_mini_project/models/category.dart';
 import 'package:flutter_mini_project/models/recipe.dart';
 import 'package:flutter_mini_project/models/recipe_detail.dart';
+import 'package:flutter_mini_project/models/search.dart';
 
 class HomeViewModel extends ChangeNotifier {
   DataState dataState = DataState.loading;
@@ -45,14 +47,70 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  final CategorysAPI _categorysAPI = CategorysAPI();
+  final CategorysAPI _categoryAPI = CategorysAPI();
   List<Category> categoryList = [];
 
   void getCategoryList() async {
     changeState(DataState.loading);
 
     try {
-      categoryList = await _categorysAPI.getCategorys();
+      categoryList = await _categoryAPI.getCategorys();
+      changeState(DataState.filled);
+    } catch (e) {
+      changeState(DataState.error);
+    }
+  }
+
+  List<Search> searchList = [];
+  final SearchAPI _searchAPI = SearchAPI();
+
+  void searchRecipeList(String key) async {
+    changeState(DataState.loading);
+
+    try {
+      searchList = await _searchAPI.searchRecipeByKey(key);
+
+      for (int i = 0; i < searchList.length; i++) {
+        if (searchList[i].title == null) {
+          try {
+            detailList = await _detailAPI.getDetailByKey(searchList[i].key!);
+            changeState(DataState.filled);
+          } catch (e) {
+            changeState(DataState.error);
+          }
+
+          searchList[i].title = detailList?.title;
+        }
+      }
+      changeState(DataState.filled);
+    } catch (e) {
+      changeState(DataState.error);
+    }
+  }
+
+  final CategorysAPI _categoriesListAPI = CategorysAPI();
+  List<Recipe> categoriesList = [];
+
+  int page = 0;
+
+  void getCategoriesList(String key) async {
+    changeState(DataState.loading);
+
+    try {
+      categoriesList = await _categoriesListAPI.getCategoryList(key, page);
+      for (int i = 0; i < categoriesList.length; i++) {
+        if (categoriesList[i].title == null) {
+          try {
+            detailList =
+                await _detailAPI.getDetailByKey(categoriesList[i].key!);
+            changeState(DataState.filled);
+          } catch (e) {
+            changeState(DataState.error);
+          }
+
+          categoriesList[i].title = detailList?.title;
+        }
+      }
       changeState(DataState.filled);
     } catch (e) {
       changeState(DataState.error);

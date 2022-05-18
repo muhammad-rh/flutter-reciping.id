@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/screens/home/home_view_model.dart';
 import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_screen.dart';
-import 'package:flutter_mini_project/screens/search/search_view_model.dart';
 import 'package:flutter_mini_project/widgets/bottom_navbar.dart';
 import 'package:flutter_mini_project/widgets/search_field.dart';
 import 'package:flutter_mini_project/widgets/search_list_card.dart';
@@ -27,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
     if (WidgetsBinding.instance != null) {
       WidgetsBinding.instance!.addPostFrameCallback(
         (timeStamp) {
-          Provider.of<SearchViewModel>(context, listen: false)
+          Provider.of<HomeViewModel>(context, listen: false)
               .searchRecipeList(widget.search);
         },
       );
@@ -41,7 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          Provider.of<SearchViewModel>(context, listen: false)
+          Provider.of<HomeViewModel>(context, listen: false)
               .searchRecipeList(widget.search);
         },
         child: Column(
@@ -75,7 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   SizedBox searchScreenListView({required String keys}) {
     return SizedBox(
-      child: Consumer<SearchViewModel>(
+      child: Consumer<HomeViewModel>(
         builder: (context, value, child) {
           if (value.dataState == DataState.loading) {
             return Shimmer.fromColors(
@@ -100,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
             );
           }
 
-          if (value.recipeList.isNotEmpty) {
+          if (value.searchList.isNotEmpty) {
             isFound = true;
           } else {
             isFound = false;
@@ -137,12 +137,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       );
                     },
                     child: SearchListCard(
-                      title: value.recipeList[index].title ?? 'Untitle',
-                      thumb: value.recipeList[index].thumb ?? '',
-                      keys: value.recipeList[index].key ?? '',
-                      times: value.recipeList[index].times ?? '',
-                      portion: value.recipeList[index].serving ?? '',
-                      dificulty: value.recipeList[index].difficulty ?? '',
+                      title: value.searchList[index].title ?? 'Untitle',
+                      thumb: value.searchList[index].thumb ?? '',
+                      keys: value.searchList[index].key ?? '',
+                      times: value.searchList[index].times ?? '',
+                      portion: value.searchList[index].serving ?? '',
+                      dificulty: value.searchList[index].difficulty ?? '',
                     ),
                   );
                 }
@@ -170,7 +170,7 @@ class _SearchScreenState extends State<SearchScreen> {
               separatorBuilder: (context, index) {
                 return const SizedBox(height: 4.0);
               },
-              itemCount: isFound ? value.recipeList.length : 1,
+              itemCount: isFound ? value.searchList.length : 1,
             ),
           );
         },
