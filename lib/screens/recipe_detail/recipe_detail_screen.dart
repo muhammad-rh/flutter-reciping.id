@@ -36,6 +36,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final manager = Provider.of<FavouriteViewModel>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -127,7 +128,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                           child: const Icon(
                             Icons.favorite,
                             size: 40,
-                            color: Color.fromARGB(255, 215, 14, 14),
+                            color: Color.fromARGB(255, 228, 228, 228),
                           ),
                         ),
                       ),
