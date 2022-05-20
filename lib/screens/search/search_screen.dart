@@ -68,6 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
         isHome: false,
         isSearch: true,
         isArticle: false,
+        isFavourite: false,
         isProfil: false,
       ),
     );

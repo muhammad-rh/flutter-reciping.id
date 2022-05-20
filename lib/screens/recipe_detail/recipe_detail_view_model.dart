@@ -9,6 +9,8 @@ class RecipeDetailViewModel extends ChangeNotifier {
   final RecipeDetailAPI _detailAPI = RecipeDetailAPI();
   RecipeDetail? detailList;
 
+  List<RecipeDetail> recipeList = [];
+
   void changeState(DataState state) {
     dataState = state;
     notifyListeners();

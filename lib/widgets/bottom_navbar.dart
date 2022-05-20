@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/screens/article/article_screen.dart';
+import 'package:flutter_mini_project/screens/favourite/favourite_screen.dart';
 import 'package:flutter_mini_project/screens/home/home_screen.dart';
 import 'package:flutter_mini_project/screens/profile/profile_screen.dart';
 import 'package:flutter_mini_project/screens/search/search_screen.dart';
@@ -8,12 +9,14 @@ class BottomNavBar extends StatelessWidget {
   final bool isHome;
   final bool isSearch;
   final bool isArticle;
+  final bool isFavourite;
   final bool isProfil;
   const BottomNavBar({
     Key? key,
     required this.isHome,
     required this.isSearch,
     required this.isArticle,
+    required this.isFavourite,
     required this.isProfil,
   }) : super(key: key);
 
@@ -166,6 +169,57 @@ class BottomNavBar extends StatelessWidget {
                           pageBuilder:
                               (context, animation, secondaryAnimation) {
                             return const ArticleScreen();
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            final tween = Tween(begin: 0.0, end: 1.0);
+                            return FadeTransition(
+                              opacity: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+            ),
+          ),
+          SizedBox(
+            height: 56,
+            width: 60,
+            child: IconButton(
+              icon: Column(
+                children: [
+                  Icon(
+                    Icons.favorite,
+                    color: !isFavourite
+                        ? Colors.white
+                        : const Color.fromRGBO(251, 192, 45, 1),
+                  ),
+                  Text(
+                    'Fav',
+                    style: TextStyle(
+                      color: !isFavourite
+                          ? Colors.white
+                          : const Color.fromRGBO(251, 192, 45, 1),
+                    ),
+                  ),
+                ],
+              ),
+              onPressed: isFavourite
+                  ? () {}
+                  : () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          reverseTransitionDuration: const Duration(
+                            milliseconds: 500,
+                          ),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return const FavouriteScreen();
                           },
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {

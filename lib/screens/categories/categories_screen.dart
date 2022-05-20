@@ -66,6 +66,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         isHome: false,
         isSearch: false,
         isArticle: false,
+        isFavourite: false,
         isProfil: false,
       ),
     );

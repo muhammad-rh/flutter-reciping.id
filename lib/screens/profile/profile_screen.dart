@@ -341,6 +341,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         isHome: false,
         isSearch: false,
         isArticle: false,
+        isFavourite: false,
         isProfil: true,
       ),
     );

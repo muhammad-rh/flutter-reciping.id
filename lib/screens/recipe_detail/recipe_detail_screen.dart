@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mini_project/constans/state.dart';
+import 'package:flutter_mini_project/models/recipe_detail.dart';
+import 'package:flutter_mini_project/screens/favourite/favourite_view_model.dart';
 import 'package:flutter_mini_project/screens/recipe_detail/recipe_detail_view_model.dart';
 import 'package:flutter_mini_project/widgets/shimmer_detail.dart';
 import 'package:provider/provider.dart';
@@ -8,10 +10,12 @@ import 'package:shimmer/shimmer.dart';
 class RecipeDetailScreen extends StatefulWidget {
   final String secondThumb;
   final String keys;
+  final bool? isFav;
   const RecipeDetailScreen({
     Key? key,
     required this.secondThumb,
     required this.keys,
+    this.isFav,
   }) : super(key: key);
 
   @override
@@ -31,8 +35,17 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
     }
   }
 
+  bool _isFav = false;
+
   @override
   Widget build(BuildContext context) {
+    if (widget.isFav == null || false) {
+      _isFav = false;
+    } else if (widget.isFav == true) {
+      _isFav = true;
+    }
+
+    final manager = Provider.of<FavouriteViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -97,6 +110,43 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        top: 10,
+                        child: GestureDetector(
+                          onTap: () {
+                            final list = RecipeDetail(
+                              title: value.detailList?.title,
+                              thumb: widget.secondThumb,
+                              servings: value.detailList?.servings,
+                              times: value.detailList?.times,
+                              dificulty: value.detailList?.dificulty,
+                              author: value.detailList?.author,
+                              desc: value.detailList?.desc,
+                              needItem: value.detailList?.needItem,
+                              ingredient: value.detailList?.ingredient,
+                              step: value.detailList?.step,
+                              isFav: value.detailList?.isFav,
+                              id: widget.keys,
+                            );
+                            if (_isFav == false) {
+                              manager.addFavourite(list, context);
+                              setState(() {
+                                _isFav == !_isFav;
+                              });
+                            }
+                          },
+                          child: (_isFav == true)
+                              ? const Icon(
+                                  Icons.favorite,
+                                  size: 40,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border,
+                                  size: 40,
+                                ),
                         ),
                       ),
                     ],

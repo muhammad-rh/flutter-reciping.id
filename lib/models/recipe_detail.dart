@@ -22,6 +22,8 @@ class RecipeDetail {
   List<NeedItem>? needItem;
   List<String>? ingredient;
   List<String>? step;
+  bool? isFav;
+  String? id;
 
   RecipeDetail({
     this.title,
@@ -34,6 +36,8 @@ class RecipeDetail {
     this.needItem,
     this.ingredient,
     this.step,
+    this.isFav,
+    this.id,
   });
 
   RecipeDetail.fromJson(Map<String, dynamic> json) {
@@ -52,6 +56,29 @@ class RecipeDetail {
     }
     ingredient = json['ingredient'].cast<String>();
     step = json['step'].cast<String>();
+    isFav = json['isFav'];
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['thumb'] = thumb;
+    data['servings'] = servings;
+    data['times'] = times;
+    data['dificulty'] = dificulty;
+    if (author != null) {
+      data['author'] = author!.toJson();
+    }
+    data['desc'] = desc;
+    if (needItem != null) {
+      data['needItem'] = needItem!.map((v) => v.toJson()).toList();
+    }
+    data['ingredient'] = ingredient;
+    data['step'] = step;
+    data['isFav'] = isFav;
+    data['id'] = id;
+    return data;
   }
 }
 
@@ -65,6 +92,13 @@ class Author {
     user = json['user'];
     datePublished = json['datePublished'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user'] = user;
+    data['datePublished'] = datePublished;
+    return data;
+  }
 }
 
 class NeedItem {
@@ -76,5 +110,12 @@ class NeedItem {
   NeedItem.fromJson(Map<String, dynamic> json) {
     itemName = json['item_name'];
     thumbItem = json['thumb_item'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['item_name'] = itemName;
+    data['thumb_item'] = thumbItem;
+    return data;
   }
 }

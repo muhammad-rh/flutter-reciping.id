@@ -192,6 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isHome: true,
         isSearch: false,
         isArticle: false,
+        isFavourite: false,
         isProfil: false,
       ),
     );

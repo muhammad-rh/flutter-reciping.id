@@ -52,6 +52,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
         isHome: false,
         isSearch: false,
         isArticle: true,
+        isFavourite: false,
         isProfil: false,
       ),
     );
