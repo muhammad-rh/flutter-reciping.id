@@ -122,8 +122,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           pageBuilder:
                               (context, animation, secondaryAnimation) {
                             return RecipeDetailScreen(
-                              keys: value.recipeList[index].key!,
-                              secondThumb: value.recipeList[index].thumb!,
+                              keys: value.searchList[index].key!,
+                              secondThumb: value.searchList[index].thumb!,
                             );
                           },
                           transitionsBuilder:
@@ -171,7 +171,7 @@ class _SearchScreenState extends State<SearchScreen> {
               separatorBuilder: (context, index) {
                 return const SizedBox(height: 4.0);
               },
-              itemCount: isFound ? value.searchList.length : 1,
+              itemCount: isFound ? 20 : 1,
             ),
           );
         },

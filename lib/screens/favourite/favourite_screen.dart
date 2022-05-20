@@ -38,6 +38,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               manager.deleteFavourite(index);
             },
             onTap: () {
+              print('key : ${manager.recipeList[index].id}');
               Navigator.of(context).push(
                 PageRouteBuilder(
                   transitionDuration: const Duration(milliseconds: 500),
@@ -46,7 +47,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                     return RecipeDetailScreen(
                       keys: manager.recipeList[index].id!,
                       secondThumb: manager.recipeList[index].thumb!,
-                      isFav: true,
                     );
                   },
                   transitionsBuilder:

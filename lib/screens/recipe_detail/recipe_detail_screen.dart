@@ -10,12 +10,10 @@ import 'package:shimmer/shimmer.dart';
 class RecipeDetailScreen extends StatefulWidget {
   final String secondThumb;
   final String keys;
-  final bool? isFav;
   const RecipeDetailScreen({
     Key? key,
     required this.secondThumb,
     required this.keys,
-    this.isFav,
   }) : super(key: key);
 
   @override
@@ -35,16 +33,8 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
     }
   }
 
-  bool _isFav = false;
-
   @override
   Widget build(BuildContext context) {
-    if (widget.isFav == null || false) {
-      _isFav = false;
-    } else if (widget.isFav == true) {
-      _isFav = true;
-    }
-
     final manager = Provider.of<FavouriteViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +78,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                         decoration: BoxDecoration(
                           color: Colors.black,
                           image: DecorationImage(
-                            image: (value.detailList!.thumb != null)
+                            image: (value.detailList?.thumb != null)
                                 ? NetworkImage(value.detailList!.thumb!)
                                 : NetworkImage(widget.secondThumb),
                             fit: BoxFit.cover,
@@ -131,22 +121,14 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                               isFav: value.detailList?.isFav,
                               id: widget.keys,
                             );
-                            if (_isFav == false) {
-                              manager.addFavourite(list, context);
-                              setState(() {
-                                _isFav == !_isFav;
-                              });
-                            }
+
+                            manager.isFavourited(list);
                           },
-                          child: (_isFav == true)
-                              ? const Icon(
-                                  Icons.favorite,
-                                  size: 40,
-                                )
-                              : const Icon(
-                                  Icons.favorite_border,
-                                  size: 40,
-                                ),
+                          child: const Icon(
+                            Icons.favorite,
+                            size: 40,
+                            color: Color.fromARGB(255, 215, 14, 14),
+                          ),
                         ),
                       ),
                     ],

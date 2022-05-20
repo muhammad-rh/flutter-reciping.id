@@ -16,16 +16,36 @@ class FavouriteViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addFavourite(RecipeDetail _recipe, BuildContext context) {
+  void isFavourited(RecipeDetail _recipe) {
+    print('isFavourite');
+    final int index =
+        recipeList.indexWhere((element) => element.id == _recipe.id);
+    if (index == -1) {
+      addFavourite(_recipe);
+    } else if (index != -1) {
+      deleteFavourite(index);
+    }
+  }
+
+  void addFavourite(RecipeDetail _recipe) {
     if (_recipe.isFav == false || _recipe.isFav == null) {
       _recipe.isFav == true;
       recipeList.add(_recipe);
       updateSharedPreferences();
       Fluttertoast.showToast(msg: 'Added to Favourite');
-    } else {
-      Fluttertoast.showToast(msg: 'Has added to Favourite');
     }
 
+    notifyListeners();
+  }
+
+  void removeFavourite(RecipeDetail _recipe) {
+    final int index =
+        recipeList.indexWhere((element) => element.id == _recipe.id);
+    if (index != -1) {
+      recipeList.removeWhere((element) => element.id == _recipe.id);
+    }
+    updateSharedPreferences();
+    Fluttertoast.showToast(msg: 'Deleted From Favourite');
     notifyListeners();
   }
 
