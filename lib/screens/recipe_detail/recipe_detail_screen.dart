@@ -26,7 +26,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
     super.initState();
 
     if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         Provider.of<RecipeDetailViewModel>(context, listen: false)
             .getRecipeDetailList(widget.keys);
       });

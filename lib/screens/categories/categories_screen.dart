@@ -24,14 +24,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
     super.initState();
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback(
-        (timeStamp) {
-          Provider.of<HomeViewModel>(context, listen: false)
-              .getCategoriesList(widget.keys);
-        },
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<HomeViewModel>(context, listen: false)
+            .getCategoriesList(widget.keys);
+      },
+    );
   }
 
   bool isFound = false;

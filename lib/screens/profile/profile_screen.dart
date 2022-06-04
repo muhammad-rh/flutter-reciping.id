@@ -31,12 +31,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-        await Provider.of<AuthServices>(context, listen: false).retrieveUser();
-        setState(() {});
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Provider.of<AuthServices>(context, listen: false).retrieveUser();
+      setState(() {});
+    });
   }
 
   @override

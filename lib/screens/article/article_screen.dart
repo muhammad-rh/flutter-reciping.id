@@ -18,14 +18,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   void initState() {
     super.initState();
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback(
-        (timeStamp) {
-          Provider.of<ArticleViewModel>(context, listen: false)
-              .getArticleList('makanan-gaya-hidup');
-        },
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<ArticleViewModel>(context, listen: false)
+            .getArticleList('makanan-gaya-hidup');
+      },
+    );
   }
 
   @override

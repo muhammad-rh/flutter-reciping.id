@@ -70,13 +70,11 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       cityController.text = widget.manager.loggedInUser.city!;
     }
 
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-        await Provider.of<AuthServices>(this.context, listen: false)
-            .retrieveUser();
-        setState(() {});
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Provider.of<AuthServices>(this.context, listen: false)
+          .retrieveUser();
+      setState(() {});
+    });
   }
 
   @override

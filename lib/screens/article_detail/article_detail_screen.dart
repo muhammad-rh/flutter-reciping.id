@@ -24,12 +24,10 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
   @override
   void initState() {
     super.initState();
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        Provider.of<ArticleDetailViewModel>(context, listen: false)
-            .getArticleDetailList(widget.tags, widget.keys);
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<ArticleDetailViewModel>(context, listen: false)
+          .getArticleDetailList(widget.tags, widget.keys);
+    });
   }
 
   @override

@@ -24,14 +24,12 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback(
-        (timeStamp) {
-          Provider.of<HomeViewModel>(context, listen: false)
-              .searchRecipeList(widget.search);
-        },
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Provider.of<HomeViewModel>(context, listen: false)
+            .searchRecipeList(widget.search);
+      },
+    );
   }
 
   bool isFound = false;

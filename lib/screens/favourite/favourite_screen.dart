@@ -16,7 +16,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<FavouriteViewModel>(context, listen: false)
           .syncDataWithProvider();
     });
@@ -38,7 +38,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               manager.deleteFavourite(index);
             },
             onTap: () {
-              print('key : ${manager.recipeList[index].id}');
               Navigator.of(context).push(
                 PageRouteBuilder(
                   transitionDuration: const Duration(milliseconds: 500),

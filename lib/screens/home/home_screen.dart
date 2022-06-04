@@ -27,16 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-        await Provider.of<AuthServices>(context, listen: false).retrieveUser();
-        Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
-        Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
-        Provider.of<ArticleViewModel>(context, listen: false)
-            .getArticleList('tips-masak');
-        setState(() {});
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Provider.of<AuthServices>(context, listen: false).retrieveUser();
+      Provider.of<HomeViewModel>(context, listen: false).getRecipeList();
+      Provider.of<HomeViewModel>(context, listen: false).getCategoryList();
+      Provider.of<ArticleViewModel>(context, listen: false)
+          .getArticleList('tips-masak');
+      setState(() {});
+    });
   }
 
   @override
