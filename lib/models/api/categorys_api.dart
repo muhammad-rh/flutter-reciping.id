@@ -7,7 +7,7 @@ class CategorysAPI {
 
   Future<List<Category>> getCategorys() async {
     try {
-      var response = await _api.dio.get('/categorys/recipes/');
+      var response = await _api.dio.get('/category/recipes/');
 
       ResponseResultCategorys responseResult =
           ResponseResultCategorys.fromJson(response.data);
@@ -23,7 +23,7 @@ class CategorysAPI {
 
   Future<List<Recipe>> getCategoryList(String key, int page) async {
     try {
-      var response = await _api.dio.get('/categorys/recipes/$key/$page');
+      var response = await _api.dio.get('/category/recipes/$key/$page');
 
       ResponseResultRecipe responseResult =
           ResponseResultRecipe.fromJson(response.data);

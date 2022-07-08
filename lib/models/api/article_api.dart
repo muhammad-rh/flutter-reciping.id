@@ -7,7 +7,7 @@ class ArticleAPI {
 
   Future<List<Article>> getArticle(String key) async {
     try {
-      var response = await _api.dio.get('/categorys/article/$key');
+      var response = await _api.dio.get('/category/article/$key');
 
       ResponseResultArticle responseResult =
           ResponseResultArticle.fromJson(response.data);
