@@ -2,7 +2,7 @@
     package="com.example.flutter_mini_project">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="flutter_mini_project"
+        android:label="Reciping.id"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
