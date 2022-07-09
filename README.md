@@ -2,6 +2,10 @@
 
 A recipe mobile application created using Flutter and consuming public API from https://github.com/tomorisakura/unofficial-masakapahariini-api
 
+## Link to download apk
+
+https://bit.ly/reciping-id
+
 ## Feature
 
 This application aims to make it easier for mobile users to find recipes quickly and precisely. Not only search but this application also offers a feature to save favorite recipes so that later the user can see their favorite recipes easily.
