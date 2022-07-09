@@ -23,7 +23,7 @@ This application aims to make it easier for mobile users to find recipes quickly
 ## Some app screenshots
 
 ### SplashScreen
-![gambar](./screenshots/pict1.png/200/300)
+![gambar](./screenshots/pict1.png)
 
 ### LoginScreen
 ![gambar](./screenshots/pict2.png)
