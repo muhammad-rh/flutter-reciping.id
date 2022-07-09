@@ -22,3 +22,35 @@ This application aims to make it easier for mobile users to find recipes quickly
 
 ## Some app screenshots
 
+### SplashScreen
+![gambar](./screenshots/pict1.png)
+
+### LoginScreen
+![gambar](./screenshots/pict2.png)
+
+### RegisterScreen
+![gambar](./screenshots/pict3.png)
+
+### HomeScreen
+![gambar](./screenshots/pict4.png)
+
+### DetailRecipeScreen
+![gambar](./screenshots/pict5.png)
+
+### SearchScreen
+![gambar](./screenshots/pict6.png)
+
+### SearchNotFoundScreen
+![gambar](./screenshots/pict7.png)
+
+### ArticleScreen
+![gambar](./screenshots/pict8.png)
+
+### FavouriteScreen
+![gambar](./screenshots/pict9.png)
+
+### ProfileScreen
+![gambar](./screenshots/pict10.png)
+
+### ProfileEditScreen
+![gambar](./screenshots/pict8.png)
