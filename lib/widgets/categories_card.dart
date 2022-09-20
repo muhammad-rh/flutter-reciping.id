@@ -20,8 +20,8 @@ class CategoriesCard extends StatelessWidget {
       child: TextButton(
         child: Text(category),
         style: TextButton.styleFrom(
+          foregroundColor: const Color.fromARGB(255, 24, 24, 24),
           backgroundColor: const Color.fromRGBO(251, 192, 45, 1),
-          primary: const Color.fromARGB(255, 24, 24, 24),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10),

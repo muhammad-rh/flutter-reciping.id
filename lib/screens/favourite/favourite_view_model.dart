@@ -17,7 +17,7 @@ class FavouriteViewModel extends ChangeNotifier {
   }
 
   void isFavourited(RecipeDetail _recipe) {
-    print('isFavourite');
+    // print('isFavourite');
     final int index =
         recipeList.indexWhere((element) => element.id == _recipe.id);
     if (index == -1) {

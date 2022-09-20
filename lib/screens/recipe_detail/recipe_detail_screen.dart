@@ -25,12 +25,10 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
   void initState() {
     super.initState();
 
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        Provider.of<RecipeDetailViewModel>(context, listen: false)
-            .getRecipeDetailList(widget.keys);
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<RecipeDetailViewModel>(context, listen: false)
+          .getRecipeDetailList(widget.keys);
+    });
   }
 
   @override
@@ -113,7 +111,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                               thumb: widget.secondThumb,
                               servings: value.detailList?.servings,
                               times: value.detailList?.times,
-                              dificulty: value.detailList?.dificulty,
+                              difficulty: value.detailList?.difficulty,
                               author: value.detailList?.author,
                               desc: value.detailList?.desc,
                               needItem: value.detailList?.needItem,
@@ -206,7 +204,7 @@ class _RecipeDetailScreen extends State<RecipeDetailScreen> {
                             style: TextStyle(fontSize: 15),
                           ),
                           Text(
-                            value.detailList!.dificulty!,
+                            value.detailList!.difficulty!,
                             style: const TextStyle(
                               fontSize: 15,
                             ),

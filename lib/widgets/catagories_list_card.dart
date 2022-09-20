@@ -80,11 +80,11 @@ class CategoriesListCard extends StatelessWidget {
                     );
                   },
                   style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    primary: Colors.white,
                     backgroundColor: const Color.fromRGBO(251, 192, 45, 1),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,

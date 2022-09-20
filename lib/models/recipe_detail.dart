@@ -16,7 +16,7 @@ class RecipeDetail {
   String? thumb;
   String? servings;
   String? times;
-  String? dificulty;
+  String? difficulty;
   Author? author;
   String? desc;
   List<NeedItem>? needItem;
@@ -30,7 +30,7 @@ class RecipeDetail {
     this.thumb,
     this.servings,
     this.times,
-    this.dificulty,
+    this.difficulty,
     this.author,
     this.desc,
     this.needItem,
@@ -45,7 +45,7 @@ class RecipeDetail {
     thumb = json['thumb'];
     servings = json['servings'];
     times = json['times'];
-    dificulty = json['dificulty'];
+    difficulty = json['difficulty'];
     author = json['author'] != null ? Author.fromJson(json['author']) : null;
     desc = json['desc'];
     if (json['needItem'] != null) {
@@ -66,7 +66,7 @@ class RecipeDetail {
     data['thumb'] = thumb;
     data['servings'] = servings;
     data['times'] = times;
-    data['dificulty'] = dificulty;
+    data['difficulty'] = difficulty;
     if (author != null) {
       data['author'] = author!.toJson();
     }

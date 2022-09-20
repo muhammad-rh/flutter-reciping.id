@@ -65,7 +65,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               keys: manager.recipeList[index].id ?? '',
               times: manager.recipeList[index].times ?? '',
               portion: manager.recipeList[index].servings ?? '',
-              dificulty: manager.recipeList[index].dificulty ?? '',
+              dificulty: manager.recipeList[index].difficulty ?? '',
             ),
           );
         },
